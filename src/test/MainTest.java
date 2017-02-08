@@ -55,6 +55,7 @@ public class MainTest {
 				}
 			};
 			hanshu.setFunction(han);
+			
 			Thing shuiThing=new Thing(shijie, "shui");
 			Attriable att=new Attriable() 
 			{

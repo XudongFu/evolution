@@ -30,6 +30,7 @@ public  class Negetivefun  extends BaseFunction
 	
 	/**
 	 * 对函数变动可能会引发自己启动的属性注册自己
+<<<<<<< HEAD
 	 * 
 	 * 只能监听自身的属性变化，不能监听其他事物的属性变化，进行相应，
 	 */
