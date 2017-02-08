@@ -15,8 +15,7 @@ public  class Negetivefun  extends BaseFunction
 	 * 检查函数是否启动
 	 */
 	 Checkable check;
-	
-	
+	 
 	public Negetivefun(Thing thing) 
 	{
 		super(thing);
@@ -31,16 +30,16 @@ public  class Negetivefun  extends BaseFunction
 	
 	/**
 	 * 对函数变动可能会引发自己启动的属性注册自己
+	 * 
+	 * 只能监听自身的属性变化，不能监听其他事物的属性变化，进行相应，
 	 */
 	void registerSelf() {
 		for (Address dizhi : src) {
-			for (Thing shiwu : world.intanceThings) {
-				for (Attri shuxing : shiwu.attris) {
-					if (dizhi.equals(shuxing.getAddress())) {
-						shuxing.linkedFun.add(this);
-					}
+			for (Attri shuxing : belonged.attris) {
+				if (dizhi.equals(shuxing.getAddress())) {
+					shuxing.linkedFun.add(this);
 				}
-			}
+			}	
 		}
 	}
 	
