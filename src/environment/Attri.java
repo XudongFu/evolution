@@ -10,6 +10,9 @@ public  class Attri
     World world;
 	private String type;
 	Attriable shuxing;
+	/**
+	 * 链接的函数，属性变动时候可能去调用的函数，这样的设定也不知道好不好
+	 */
 	ArrayList<Negetivefun> linkedFun=new ArrayList<>();
 	
 	public Map<String, Integer> integerMap=new TreeMap<String, Integer>();
