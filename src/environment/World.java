@@ -2,46 +2,51 @@ package environment;
 import java.util.ArrayList;
 
 /**
+ *
+ *
  * @date  2016/08/28
  * @version evolution 2.0
- * @author ¸¶Ğñ¶«  
+ * @author ä»˜æ—­ä¸œ  
  */
 public final class World {
 	/**
-	 * ÊÀ½çµÄÃû×Ö
+	 * ä¸–ç•Œçš„åå­—
 	 */
 	private String name;
 
 	/**
-	 * ´æÔÚµÄÊµÀıÊÂÎï
+	 * å­˜åœ¨çš„å®ä¾‹äº‹ç‰©
 	 */
     ArrayList<Thing> intanceThings = new ArrayList<>();
-
 	/**
-	 * ÊÀ½ç¿ÉÒÔÊ¹ÓÃµÄÄ£ĞÍÊÂÎï
+	 * å­˜åœ¨çš„å®ä¾‹äº‹ç‰©
 	 */
 	ArrayList<Thing> modleThings = new ArrayList<>();
+    /**
+     * å·²ç»å»ºç«‹é“¾æ¥çš„å…¶ä»–ä¸–ç•Œ
+     */
+    ArrayList<World> linkedWorld = new ArrayList<>();
 
 	/**
-	 * ÊÀ½çµÄÖ÷¶¯º¯Êı£¬¿ÉÒÔÄ³ÖÖ³Ì¶ÈÉÏÆÆ»µÊÂÎï±¾ÉíµÄ¹æÔò½øĞĞÔË×÷
+	 * ä¸–ç•Œçš„ä¸»åŠ¨å‡½æ•°ï¼Œå¯ä»¥æŸç§ç¨‹åº¦ä¸Šç ´åäº‹ç‰©æœ¬èº«çš„è§„åˆ™è¿›è¡Œè¿ä½œ
 	 */
 	ArrayList<PositiveFun> zhudonghanshu = new ArrayList<>();
 
 	/**
-	 * ¹ØÓÚÊÇ·ñĞèÒª½øĞĞ¶ÔÊÀ½çµÄÔËĞĞ½øĞĞ¼ÇÂ¼µÄ±äÁ¿
+	 * å…³äºæ˜¯å¦éœ€è¦è¿›è¡Œå¯¹ä¸–ç•Œçš„è¿è¡Œè¿›è¡Œè®°å½•çš„å˜é‡
 	 */
 	boolean isRecord;
 
 	/**
 	 * 
-	 * @return ·µ»ØÊÇ·ñĞèÒª¶ÔÊÀ½çµÄÔËĞĞ½øĞĞ¼ÇÂ¼
+	 * @return è¿”å›æ˜¯å¦éœ€è¦å¯¹ä¸–ç•Œçš„è¿è¡Œè¿›è¡Œè®°å½•
 	 */
 	public boolean isRecord() {
 		return isRecord;
 	}
 
 	/**
-	 * ¸Ä±äÊÀ½çÊÇ·ñĞèÒª½øĞĞ¼ÇÂ¼
+	 * æ”¹å˜ä¸–ç•Œæ˜¯å¦éœ€è¦è¿›è¡Œè®°å½•
 	 * 
 	 * @param isRecord
 	 */
@@ -50,12 +55,12 @@ public final class World {
 	}
 
 	/**
-	 * ¼ÇÂ¼ÊÀ½çµÄ±ä»¯¹ı³Ì£¬Ö§³Ö²¢·¢²Ù×÷
+	 * è®°å½•ä¸–ç•Œçš„å˜åŒ–è¿‡ç¨‹ï¼Œæ”¯æŒå¹¶å‘æ“ä½œ
 	 */
 	Way routin;
 
 	/**
-	 * ÊÀ½çµÄÄ¿±ê
+	 * ä¸–ç•Œçš„ç›®æ ‡
 	 */
 	Condition ambition;
 
@@ -65,7 +70,8 @@ public final class World {
 
 	public World(String name) {
 		this.name = name;
-	}
+
+    }
 	
 	
 	public void addIntanceThingFromModel(String name,String id) {
@@ -82,7 +88,7 @@ public final class World {
 	}
 
 	/**
-	 * Æô¶¯ÊÀ½çµÄÔËĞĞ
+	 * å¯åŠ¨ä¸–ç•Œçš„è¿è¡Œ
 	 */
 	public void start() 
 	{
@@ -101,7 +107,7 @@ public final class World {
 	}
 
 	/**
-	 * ÖØĞÂÆô¶¯ÊÀ½çµÄÔËĞĞ£¬Ò»°ãÔÚÖ÷¶¯º¯Êı²ÎÓëºóÔì³É²»¿ÉÔ¤ÖªµÄÓ°Ïì
+	 * é‡æ–°å¯åŠ¨ä¸–ç•Œçš„è¿è¡Œï¼Œä¸€èˆ¬åœ¨ä¸»åŠ¨å‡½æ•°å‚ä¸åé€ æˆä¸å¯é¢„çŸ¥çš„å½±å“
 	 */
 	public void reStart() {
 
@@ -114,21 +120,21 @@ public final class World {
 	}
 
 	/**
-	 * ÔİÍ£ÊÀ½çµÄÔËĞĞ
+	 * æš‚åœä¸–ç•Œçš„è¿è¡Œ
 	 */
 	public void pause() {
 
 	}
 
 	/**
-	 * ½áÊøÊÀ½çµÄÔËĞĞ£¬ËùÓĞµÄÊı¾İ½«»á±»É¾³ı
+	 * ç»“æŸä¸–ç•Œçš„è¿è¡Œï¼Œæ‰€æœ‰çš„æ•°æ®å°†ä¼šè¢«åˆ é™¤
 	 */
 	public void end() {
 
 	}
 	
 	/**
-	 * ±êÊ¶ÊÀ½çÔËĞĞÊ±¼äµÄ»úÖÆ¡£
+	 * æ ‡è¯†ä¸–ç•Œè¿è¡Œæ—¶é—´çš„æœºåˆ¶ã€‚
 	 */
     @SuppressWarnings("unused")
 	private int time=0;
@@ -142,7 +148,7 @@ public final class World {
 	}
 	
 	/**
-	 * 	ÎªÊÂÎïµÄÌá¹©IDËùÊôĞÔ£¬Ã¿Ìí¼ÓÒ»¸öÊÂÎïµÄÊµÀı£¬idÖµ¾Í¼Ó1£¬
+	 * 	ä¸ºäº‹ç‰©çš„æä¾›IDæ‰€å±æ€§ï¼Œæ¯æ·»åŠ ä¸€ä¸ªäº‹ç‰©çš„å®ä¾‹ï¼Œidå€¼å°±åŠ 1ï¼Œ
 	 */
 	int idStartPoint=1;
 	
@@ -153,9 +159,9 @@ public final class World {
 	
 
 	/**
-	 * @param name Òª»ñÈ¡µÄÊÂÎïµÄÃû³Æ
-	 * @param id   ÊÂÎï½«Òª±»ÉèÖÃµÄid£¬
-	 * @return   ·µ»ØÖÆ¶¨nameºÍidÊÂÎïµÄÊµÀı
+	 * @param name è¦è·å–çš„äº‹ç‰©çš„åç§°
+	 * @param id   äº‹ç‰©å°†è¦è¢«è®¾ç½®çš„idï¼Œ
+	 * @return   è¿”å›åˆ¶å®šnameå’Œidäº‹ç‰©çš„å®ä¾‹
 	 */
 	public Thing getIntanceThingOfName(String name, String id) 
 	{
@@ -169,12 +175,12 @@ public final class World {
 				return tempThing;
 			}
 		}
-		throw new ThingNotFoundException("nameÎª" + name + "µÄÊÂÎïÃ»ÓĞ±»ÕÒµ½");
+		throw new ThingNotFoundException("nameä¸º" + name + "çš„äº‹ç‰©æ²¡æœ‰è¢«æ‰¾åˆ°");
 	}
 	
 	
 	/**
-	 * Á¬½ÓÊôĞÔÖ¸Ïòº¯ÊıµÄÁ¬Ïß
+	 * è¿æ¥å±æ€§æŒ‡å‘å‡½æ•°çš„è¿çº¿
 	 */
 	private void registerAllThing() 
 	{

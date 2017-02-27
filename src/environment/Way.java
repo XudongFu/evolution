@@ -6,19 +6,19 @@ import java.util.TreeMap;
 
 /**
  * @date 2016/10/7
- * @author ¸¶Ğñ¶«
- *ÓÃÓÚ¼ÇÂ¼ÊÀ½çµÄÔËĞĞ£¬ÊÇÕë¶ÔÓÚÕû¸öÊÀ½çÀ´ËµµÄ¡£
+ * @author ä»˜æ—­ä¸œ
+ *ç”¨äºè®°å½•ä¸–ç•Œçš„è¿è¡Œï¼Œæ˜¯é’ˆå¯¹äºæ•´ä¸ªä¸–ç•Œæ¥è¯´çš„ã€‚
  *
  */
 public class Way 
 {
 	/**
-	 * ÊÀ½çµÄ³õÊ¼×´Ì¬
+	 * ä¸–ç•Œçš„åˆå§‹çŠ¶æ€
 	 */
 	Map<Address, Condition> startCondition=new HashMap<Address, Condition>();
 	
 	/**
-	 * ¼ÇÂ¼Õû¸öÊÀ½çÖĞº¯ÊıµÄÖ´ĞĞ×´¿ö
+	 * è®°å½•æ•´ä¸ªä¸–ç•Œä¸­å‡½æ•°çš„æ‰§è¡ŒçŠ¶å†µ
 	 */
 	Map<Address, Object> recorder=new TreeMap<>();
 	
@@ -28,7 +28,7 @@ public class Way
 	}
 	
 	/**
-	 * ¼ÇÂ¼µ¥´ÎµÄ»î¶¯
+	 * è®°å½•å•æ¬¡çš„æ´»åŠ¨
 	 */
 	public synchronized void  record() 
 	{

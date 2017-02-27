@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * @author ¸¶Ğñ¶«
+ * @author ä»˜æ—­ä¸œ
  *
  */
 public  class Negetivefun  extends BaseFunction 
@@ -12,7 +12,7 @@ public  class Negetivefun  extends BaseFunction
 	ArrayList<Address> src=new ArrayList<>();
 	
 	/**
-	 * ¼ì²éº¯ÊıÊÇ·ñÆô¶¯
+	 * æ£€æŸ¥å‡½æ•°æ˜¯å¦å¯åŠ¨
 	 */
 	 Checkable check;
 	 
@@ -29,10 +29,10 @@ public  class Negetivefun  extends BaseFunction
 	
 	
 	/**
-	 * ¶Ôº¯Êı±ä¶¯¿ÉÄÜ»áÒı·¢×Ô¼ºÆô¶¯µÄÊôĞÔ×¢²á×Ô¼º
+	 * å¯¹å‡½æ•°å˜åŠ¨å¯èƒ½ä¼šå¼•å‘è‡ªå·±å¯åŠ¨çš„å±æ€§æ³¨å†Œè‡ªå·±
 <<<<<<< HEAD
 	 * 
-	 * Ö»ÄÜ¼àÌı×ÔÉíµÄÊôĞÔ±ä»¯£¬²»ÄÜ¼àÌıÆäËûÊÂÎïµÄÊôĞÔ±ä»¯£¬½øĞĞÏàÓ¦£¬
+	 * åªèƒ½ç›‘å¬è‡ªèº«çš„å±æ€§å˜åŒ–ï¼Œä¸èƒ½ç›‘å¬å…¶ä»–äº‹ç‰©çš„å±æ€§å˜åŒ–ï¼Œè¿›è¡Œç›¸åº”ï¼Œ
 	 */
 	void registerSelf() {
 		for (Address dizhi : src) {
@@ -73,7 +73,7 @@ public  class Negetivefun  extends BaseFunction
 			if(world.isRecord)
 			{
 				/**
-				 * ¼ÇÂ¼ÏÂËùÖ´ĞĞµÄ±ä»¯
+				 * è®°å½•ä¸‹æ‰€æ‰§è¡Œçš„å˜åŒ–
 				 */
 			}
 			reallyChange(t);
@@ -87,7 +87,7 @@ public  class Negetivefun  extends BaseFunction
 	
 	
 	/**
-	 * »ñÈ¡Æ¥ÅäaddressµÄÊôĞÔ
+	 * è·å–åŒ¹é…addressçš„å±æ€§
 	 * @param dizhi
 	 * @return
 	 */

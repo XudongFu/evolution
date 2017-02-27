@@ -5,7 +5,7 @@ public final class DbModleManager
 
 	
 	/**
-	 * Á´½Óµ½Êı¾İ¿â£¬Êı¾İ¿âÖĞ±£´æÊÂÎïµÄ´úÂëÎÄ¼ş£¬ÏµÍ³½øĞĞ¼´Ê±µÄ±àÒë
+	 * é“¾æ¥åˆ°æ•°æ®åº“ï¼Œæ•°æ®åº“ä¸­ä¿å­˜äº‹ç‰©çš„ä»£ç æ–‡ä»¶ï¼Œç³»ç»Ÿè¿›è¡Œå³æ—¶çš„ç¼–è¯‘
 	 * @return
 	 */
 	boolean connectToDb()
@@ -16,8 +16,8 @@ public final class DbModleManager
 	
 	
 	/**
-	 * »ñÈ¡Êı¾İ¿âÖĞµÄÄ³¸öÊÂÎï
-	 * @param id  ÊÂÎïÔÚÊı¾İ¿âÖĞµÄid
+	 * è·å–æ•°æ®åº“ä¸­çš„æŸä¸ªäº‹ç‰©
+	 * @param id  äº‹ç‰©åœ¨æ•°æ®åº“ä¸­çš„id
 	 * @return
 	 */
 	Thing getThingOfID(long id)

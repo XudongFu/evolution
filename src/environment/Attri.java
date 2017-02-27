@@ -29,13 +29,13 @@ public  class Attri
    {
 	   if(shuxing!=null)
 		   return shuxing.getValue(this);
-		   throw new RuntimeException("´ËÊôĞÔ²ÎÊıÓĞÎó");
+		   throw new RuntimeException("æ­¤å±æ€§å‚æ•°æœ‰è¯¯");
    }
    
    public void setValue(Object change) {
 	   if(shuxing!=null)
 		   shuxing.setValue(this,change);
-		   throw new RuntimeException("´ËÊôĞÔ²ÎÊıÓĞÎó");
+		   throw new RuntimeException("æ­¤å±æ€§å‚æ•°æœ‰è¯¯");
    }
    
    
@@ -75,7 +75,7 @@ public  class Attri
     		Address dizhi=new Address(type,belonged.getId(),belonged.getName());
         	return dizhi;
     	}
-    	throw new RuntimeException("·ÇÊµÀıÊÂÎï£¬ÎŞ·¨·µ»ØµØÖ·");
+    	throw new RuntimeException("éå®ä¾‹äº‹ç‰©ï¼Œæ— æ³•è¿”å›åœ°å€");
 	}
     
     

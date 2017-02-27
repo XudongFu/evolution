@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 
 /**
- * ÊÂÎïÊÇ±»¶¯º¯Êı{@code Negetivefun}ºÍÊôĞÔ{@code Attri}µÄ¼¯ºÏ
- * @author ¸¶Ğñ¶«
+ * äº‹ç‰©æ˜¯è¢«åŠ¨å‡½æ•°{@code Negetivefun}å’Œå±æ€§{@code Attri}çš„é›†åˆ
+ * @author ä»˜æ—­ä¸œ
  *
  */
 public class Thing implements Cloneable {
@@ -16,22 +16,22 @@ public class Thing implements Cloneable {
 	ArrayList<Negetivefun> functions = new ArrayList<>();
 
 	/**
-	 * ÊÂÎïµÄÃû×Ö£¬´ú±íÒ»ÀàÊÂÎï
+	 * äº‹ç‰©çš„åå­—ï¼Œä»£è¡¨ä¸€ç±»äº‹ç‰©
 	 */
 	private String name;
 
 	/**
-	 * ÊÂÎïµÄid£¬´ú±íÒ»¸öÊÂÎï
+	 * äº‹ç‰©çš„idï¼Œä»£è¡¨ä¸€ä¸ªäº‹ç‰©
 	 */
 	private String id;
 
 	/**
-	 * Ö¸Ê¾¸ÃÊÂÎï´¦ÓÚÊµÀıÊÂÎï»¹ÊÇÄ£ĞÍÊÂÎï×´Ì¬
+	 * æŒ‡ç¤ºè¯¥äº‹ç‰©å¤„äºå®ä¾‹äº‹ç‰©è¿˜æ˜¯æ¨¡å‹äº‹ç‰©çŠ¶æ€
 	 */
 	boolean isIntance = false;
 
 	/**
-	 * ·µ»Ø¶ÔÏóÊÇ·ñÊÇÊµÀı×´Ì¬
+	 * è¿”å›å¯¹è±¡æ˜¯å¦æ˜¯å®ä¾‹çŠ¶æ€
 	 * 
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class Thing implements Cloneable {
 	}
 
 	/**
-	 * ÉèÖÃ¶ÔÏóÊÇÊµÀı×´Ì¬»¹ÊÇÄ£ĞÍ×´Ì¬
+	 * è®¾ç½®å¯¹è±¡æ˜¯å®ä¾‹çŠ¶æ€è¿˜æ˜¯æ¨¡å‹çŠ¶æ€
 	 * 
 	 * @param isIntance
 	 */
@@ -61,7 +61,7 @@ public class Thing implements Cloneable {
 	}
 
 	/**
-	 * ÉèÖÃÄ³ÖÖÊôĞÔµÄÖµ£¬¹©·ÇÕı³£ÇşµÀÊ¹ÓÃ
+	 * è®¾ç½®æŸç§å±æ€§çš„å€¼ï¼Œä¾›éæ­£å¸¸æ¸ é“ä½¿ç”¨
 	 * @param type
 	 * @param value
 	 */
@@ -71,7 +71,7 @@ public class Thing implements Cloneable {
 	}
 	
 	/**
-	 * ÏòÊÂÎïÌí¼Ó±»¶¯º¯Êı
+	 * å‘äº‹ç‰©æ·»åŠ è¢«åŠ¨å‡½æ•°
 	 */
 	public void attachNegtiveFun(Negetivefun fun)
 	{
@@ -99,7 +99,7 @@ public class Thing implements Cloneable {
 	
 	/**
 	 * 
-	 * @return ¸ÃÊÂÎï´ËÊ±¿ÌµÄ×´Ì¬
+	 * @return è¯¥äº‹ç‰©æ­¤æ—¶åˆ»çš„çŠ¶æ€
 	 */
 	Condition getCondition() {
 		return new Condition(this);
@@ -111,7 +111,7 @@ public class Thing implements Cloneable {
 
 	/**
 	 * 
-	 * @param id  ĞÂµÄÊÂÎïµÄid£¬Ã»ÓĞ¼ìÑéÊÂÎïidµÄÎ¨Ò»ĞÔ£¬ÎªÁËµÃµ½È«¾ÖÎ¨Ò»idµÄĞ§¹û£¬´Óworld»ñÈ¡£¬·ÀÖ¹³åÍ»
+	 * @param id  æ–°çš„äº‹ç‰©çš„idï¼Œæ²¡æœ‰æ£€éªŒäº‹ç‰©idçš„å”¯ä¸€æ€§ï¼Œä¸ºäº†å¾—åˆ°å…¨å±€å”¯ä¸€idçš„æ•ˆæœï¼Œä»worldè·å–ï¼Œé˜²æ­¢å†²çª
 	 * @return
 	 */
 	public Thing clone(String id) 
@@ -131,7 +131,7 @@ public class Thing implements Cloneable {
 	}
 
 	/**
-	 * ½«ÊÂÎïµÄËùÓĞµÄº¯Êı½øĞĞ×¢²á
+	 * å°†äº‹ç‰©çš„æ‰€æœ‰çš„å‡½æ•°è¿›è¡Œæ³¨å†Œ
 	 */
 	void registerFunToAttri()
 	{

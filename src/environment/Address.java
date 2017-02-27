@@ -2,8 +2,8 @@ package environment;
 
 
 /**
- * ¶ÔÒ»¸öÊÂÎïµÄÊôĞÔ½øĞĞ±êÊ¶
- * @author ¸¶Ğñ¶«
+ * å¯¹ä¸€ä¸ªäº‹ç‰©çš„å±æ€§è¿›è¡Œæ ‡è¯†
+ * @author ä»˜æ—­ä¸œ
  *
  */
 public class Address 

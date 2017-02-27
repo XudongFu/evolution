@@ -38,15 +38,15 @@ public class MainTest {
 						if((int)a.getValue()<95)
 						{
 							bianhua.put(a,5);
-							System.out.println(a.getAddress().name+",idÎª£º "+a.getAddress().id+"µÄÎÂ¶ÈÔö¼ÓÁË5¶È,±äÎªÁË"+((int)a.getValue()+5));
+							System.out.println(a.getAddress().name+",idä¸ºï¼š "+a.getAddress().id+"çš„æ¸©åº¦å¢žåŠ äº†5åº¦,å˜ä¸ºäº†"+((int)a.getValue()+5));
 						}
 						else
 						{
 							bianhua.put(a, 100-(int)a.getValue());
-							System.out.println(a.getAddress().name+"µÄÎÂ¶È´ïµ½ÁË100¶È");
+							System.out.println(a.getAddress().name+"çš„æ¸©åº¦è¾¾åˆ°äº†100åº¦");
 						}
 					}
-					System.out.println("±éÀúÒ»´Î");
+					System.out.println("éåŽ†ä¸€æ¬¡");
 					return bianhua;
 				}
 				@Override

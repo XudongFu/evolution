@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author ¸¶Ğñ¶«
- *Õâ¸ö¶«Î÷ÊÇÓÃÀ´¸ÉÂïµÄ£¬Íü¼ÇÁË£¬
- *½ÚµãÏàµ±ÓÚÒ»¸öÊÂÎï£¬
+ * @author ä»˜æ—­ä¸œ
+ *è¿™ä¸ªä¸œè¥¿æ˜¯ç”¨æ¥å¹²å˜›çš„ï¼Œå¿˜è®°äº†ï¼Œ
+ *èŠ‚ç‚¹ç›¸å½“äºä¸€ä¸ªäº‹ç‰©ï¼Œ
  * @param <T>
  */
 public class Node<T> 
@@ -17,7 +17,7 @@ public class Node<T>
 	{
 		self=node;
 		if(relation.contains(node))
-			throw new RuntimeException("½Úµã´´½¨Ê§°Ü£¬½ÚµãµÄ´´½¨ÒÔ×Ô¼ºÎªÇ°ÌáÌõ¼ş");
+			throw new RuntimeException("èŠ‚ç‚¹åˆ›å»ºå¤±è´¥ï¼ŒèŠ‚ç‚¹çš„åˆ›å»ºä»¥è‡ªå·±ä¸ºå‰ææ¡ä»¶");
 		relationship=relation;
 	}
 }

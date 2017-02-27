@@ -7,13 +7,13 @@ public interface Functional
 {
 	  /**
      * 
-     * @param desit ĞèÒª¸ü¸ÄµÄÄ¿±êº¯Êı£¬
-     * @return Õë¶ÔÃ¿¸öÄ¿±êº¯Êı£¬ĞèÒª½øĞĞµÄ¸ü¸Ä
+     * @param desit éœ€è¦æ›´æ”¹çš„ç›®æ ‡å‡½æ•°ï¼Œ
+     * @return é’ˆå¯¹æ¯ä¸ªç›®æ ‡å‡½æ•°ï¼Œéœ€è¦è¿›è¡Œçš„æ›´æ”¹
      */
      Map<Attri, Object> function(Negetivefun fun,ArrayList<Attri> desit);
      
      /**
- 	 * »ñÈ¡º¯ÊıµÄÃû³Æ
+ 	 * è·å–å‡½æ•°çš„åç§°
  	 * @return
  	 */
  	 String getFunName();

@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 
 /***
- * ¶ÔÓÚµ¥¸öÊÂÎïÊôĞÔ×´Ì¬µÄÃèÊö£¬
+ * å¯¹äºå•ä¸ªäº‹ç‰©å±æ€§çŠ¶æ€çš„æè¿°ï¼Œ
  */
 public class Condition 
 {

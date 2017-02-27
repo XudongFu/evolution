@@ -8,32 +8,32 @@ public class NetTool
 {
 
 	public static String sendGet(String url, List<HTTPParam> list) throws IOException {
-        StringBuffer buffer = new StringBuffer(); //ÓÃÀ´Æ´½Ó²ÎÊý
-        StringBuffer result = new StringBuffer(); //ÓÃÀ´½ÓÊÜ·µ»ØÖµ
-        URL httpUrl = null; //HTTP URLÀà ÓÃÕâ¸öÀàÀ´´´½¨Á¬½Ó
-        URLConnection connection = null; //´´½¨µÄhttpÁ¬½Ó
-        BufferedReader bufferedReader = null; //½ÓÊÜÁ¬½ÓÊÜµÄ²ÎÊý
-        //Èç¹û´æÔÚ²ÎÊý£¬ÎÒÃÇ²ÅÐèÒªÆ´½Ó²ÎÊý ÀàËÆÓÚ localhost/index.html?a=a&b=b
+        StringBuffer buffer = new StringBuffer(); //ç”¨æ¥æ‹¼æŽ¥å‚æ•°
+        StringBuffer result = new StringBuffer(); //ç”¨æ¥æŽ¥å—è¿”å›žå€¼
+        URL httpUrl = null; //HTTP URLç±» ç”¨è¿™ä¸ªç±»æ¥åˆ›å»ºè¿žæŽ¥
+        URLConnection connection = null; //åˆ›å»ºçš„httpè¿žæŽ¥
+        BufferedReader bufferedReader = null; //æŽ¥å—è¿žæŽ¥å—çš„å‚æ•°
+        //å¦‚æžœå­˜åœ¨å‚æ•°ï¼Œæˆ‘ä»¬æ‰éœ€è¦æ‹¼æŽ¥å‚æ•° ç±»ä¼¼äºŽ localhost/index.html?a=a&b=b
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 buffer.append(list.get(i).getKey()).append("=").append(URLEncoder.encode(list.get(i).getValue(), "utf-8"));
-                //Èç¹û²»ÊÇ×îºóÒ»¸ö²ÎÊý£¬²»ÐèÒªÌí¼Ó&
+                //å¦‚æžœä¸æ˜¯æœ€åŽä¸€ä¸ªå‚æ•°ï¼Œä¸éœ€è¦æ·»åŠ &
                 if ((i + 1) < list.size()) {
                     buffer.append("&");
                 }
             }
             url = url + "?" + buffer.toString();
         }
-        //´´½¨URL
+        //åˆ›å»ºURL
         httpUrl = new URL(url);
-        //½¨Á¢Á¬½Ó
+        //å»ºç«‹è¿žæŽ¥
         connection = httpUrl.openConnection();
        
         connection.setRequestProperty("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
         connection.setRequestProperty("connection", "keep-alive");
         connection.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0");
         connection.connect();
-        //½ÓÊÜÁ¬½Ó·µ»Ø²ÎÊý
+        //æŽ¥å—è¿žæŽ¥è¿”å›žå‚æ•°
         bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
@@ -45,25 +45,25 @@ public class NetTool
     }
  
     /**
-     * ·¢ËÍPostÇëÇó
+     * å‘é€Postè¯·æ±‚
      *
-     * @param url  ÇëÇóµØÖ·
-     * @param list ÇëÇó²ÎÊý
+     * @param url  è¯·æ±‚åœ°å€
+     * @param list è¯·æ±‚å‚æ•°
      *
-     * @return ÇëÇó½á¹û
+     * @return è¯·æ±‚ç»“æžœ
      *
      * @throws IOException
      */
     public static String sendPost(String url, List<HTTPParam> list) throws IOException {
-        StringBuffer buffer = new StringBuffer(); //ÓÃÀ´Æ´½Ó²ÎÊý
-        StringBuffer result = new StringBuffer(); //ÓÃÀ´½ÓÊÜ·µ»ØÖµ
-        URL httpUrl = null; //HTTP URLÀà ÓÃÕâ¸öÀàÀ´´´½¨Á¬½Ó
-        URLConnection connection = null; //´´½¨µÄhttpÁ¬½Ó
+        StringBuffer buffer = new StringBuffer(); //ç”¨æ¥æ‹¼æŽ¥å‚æ•°
+        StringBuffer result = new StringBuffer(); //ç”¨æ¥æŽ¥å—è¿”å›žå€¼
+        URL httpUrl = null; //HTTP URLç±» ç”¨è¿™ä¸ªç±»æ¥åˆ›å»ºè¿žæŽ¥
+        URLConnection connection = null; //åˆ›å»ºçš„httpè¿žæŽ¥
         PrintWriter printWriter = null;
-        BufferedReader bufferedReader; //½ÓÊÜÁ¬½ÓÊÜµÄ²ÎÊý
-        //´´½¨URL
+        BufferedReader bufferedReader; //æŽ¥å—è¿žæŽ¥å—çš„å‚æ•°
+        //åˆ›å»ºURL
         httpUrl = new URL(url);
-        //½¨Á¢Á¬½Ó
+        //å»ºç«‹è¿žæŽ¥
         connection = httpUrl.openConnection();
         connection.setRequestProperty("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
         connection.setRequestProperty("connection", "keep-alive");
@@ -74,7 +74,7 @@ public class NetTool
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 buffer.append(list.get(i).getKey()).append("=").append(URLEncoder.encode(list.get(i).getValue(), "utf-8"));
-                //Èç¹û²»ÊÇ×îºóÒ»¸ö²ÎÊý£¬²»ÐèÒªÌí¼Ó&
+                //å¦‚æžœä¸æ˜¯æœ€åŽä¸€ä¸ªå‚æ•°ï¼Œä¸éœ€è¦æ·»åŠ &
                 if ((i + 1) < list.size()) {
                     buffer.append("&");
                 }
@@ -83,7 +83,7 @@ public class NetTool
         printWriter.print(buffer.toString());
         printWriter.flush();
         connection.connect();
-        //½ÓÊÜÁ¬½Ó·µ»Ø²ÎÊý
+        //æŽ¥å—è¿žæŽ¥è¿”å›žå‚æ•°
         bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
@@ -109,7 +109,7 @@ public class NetTool
 			String resString=sendGet(url, can);
 			System.out.println(resString);
 		} catch (IOException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e.printStackTrace();
 		}
 		

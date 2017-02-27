@@ -1,9 +1,9 @@
 package useful;
 
 public class HTTPParam {
-    //ÇëÇó²ÎÊı
+    //è¯·æ±‚å‚æ•°
     private String key;
-    //²ÎÊıÖµ
+    //å‚æ•°å€¼
     private String value;
  
     public HTTPParam() {

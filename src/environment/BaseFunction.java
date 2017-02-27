@@ -8,7 +8,7 @@ public  class BaseFunction
 	World world;
 	
 	/**
-	 * º¯ÊıÒª×÷ÓÃµÄÄ¿±ê{@code Address}µÄ¼¯ºÏ
+	 * å‡½æ•°è¦ä½œç”¨çš„ç›®æ ‡{@code Address}çš„é›†åˆ
 	 */
 	public ArrayList<Address> desti=new ArrayList<>();
 	
@@ -28,7 +28,7 @@ public  class BaseFunction
     
     
     /**
-     * @param changeĞèÒª·¢ÉúµÄ¸Ä±ä£¬Ò²¾ÍÊÇº¯ÊıµÄÄæº¯Êı
+     * @param changeéœ€è¦å‘ç”Ÿçš„æ”¹å˜ï¼Œä¹Ÿå°±æ˜¯å‡½æ•°çš„é€†å‡½æ•°
      * @return
      */
     Object predict(Address address,Object change)
@@ -43,7 +43,7 @@ public  class BaseFunction
    	}
     
     /**
-     * ĞèÒª¼ÇÂ¼º¯Êı¶ÔÃ¿¸öº¯Êı½øĞĞµÄ¸Ä±ä
+     * éœ€è¦è®°å½•å‡½æ•°å¯¹æ¯ä¸ªå‡½æ•°è¿›è¡Œçš„æ”¹å˜
      */
     @SuppressWarnings("unused")
 	private void registerChangeToWorld()
@@ -51,7 +51,7 @@ public  class BaseFunction
     	
     }
     /**
-     * ĞèÒªÒ»ÖÖÃèÊö´ïµ½Ê²Ã´×´Ì¬Ö´ĞĞµÄµÄ·½·¨¡£
+     * éœ€è¦ä¸€ç§æè¿°è¾¾åˆ°ä»€ä¹ˆçŠ¶æ€æ‰§è¡Œçš„çš„æ–¹æ³•ã€‚
      */
    
     
