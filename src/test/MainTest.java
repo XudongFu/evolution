@@ -3,9 +3,7 @@ package test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import environment.*;
-
 
 public class MainTest {
 
@@ -20,7 +18,6 @@ public class MainTest {
 			Checkable jiancha=new Checkable() {
 				@Override
 				public boolean check(Negetivefun fun) {
-				
 					ArrayList<Attri> shu=fun.getAttris(mudi);
 					for(Attri a:shu)
 					{
@@ -49,7 +46,6 @@ public class MainTest {
 							System.out.println(a.getAddress().name+"的温度达到了100度");
 						}
 					}
-					
 					System.out.println("遍历一次");
 					return bianhua;
 				}
@@ -61,12 +57,10 @@ public class MainTest {
 			hanshu.setFunction(han);
 			
 			Thing shuiThing=new Thing(shijie, "shui");
-			
 			Attriable att=new Attriable() 
 			{
 				@Override
 				public void inite(Attri attri) {
-					
 					attri.integerMap.put("wendu", 0);
 				}
 				@Override
