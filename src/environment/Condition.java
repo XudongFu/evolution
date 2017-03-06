@@ -20,7 +20,7 @@ public class Condition
 		id=thing.getId();
 		for(Attri shuxing:thing.attris)
 		{
-			attri.put(shuxing.getType(), shuxing.shuxing.getValue(shuxing));
+			attri.put(shuxing.getName(), shuxing.shuxing.getValue(shuxing));
 		}
 	}
 	

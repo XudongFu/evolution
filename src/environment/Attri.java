@@ -6,9 +6,22 @@ import java.util.TreeMap;
 
 public  class Attri 
 {
+	/**
+	 * 所属的事物
+	 */
 	private Thing belonged;
+	/**
+	 * 所属的世界
+	 */
     World world;
-	private String type;
+	/**
+	 * 属性的类型
+	 */
+	private String name;
+
+	/**
+	 * 这个应该是作为接口使用还是成员变量使用呢？
+	 */
 	Attriable shuxing;
 	/**
 	 * 链接的函数，属性变动时候可能去调用的函数，这样的设定也不知道好不好
@@ -18,12 +31,12 @@ public  class Attri
 	public Map<String, Integer> integerMap=new TreeMap<String, Integer>();
 	public Map<String, String> stringMap=new TreeMap<>();
 	
-   public Attri(Thing thing,String type,Attriable shu)
+   public Attri(Thing thing,String name,Attriable shu)
    {
 	 this.belonged=thing;
 	 world=thing.world;
 	 belonged.attris.add(this);
-	 this.type=type;
+	 this.name =name;
 	 this.shuxing=shu;
 	 shu.inite(this);
    }
@@ -58,9 +71,9 @@ public  class Attri
 	   }
    }
    
-   public String getType() 
+   public String getName()
    {
-	return type;
+	return name;
    }
    
 
@@ -75,7 +88,7 @@ public  class Attri
     {
     	if(belonged.isIntance)
     	{
-    		Address dizhi=new Address(type,belonged.getId(),belonged.getName());
+    		Address dizhi=new Address(name,belonged.getId(),belonged.getName());
         	return dizhi;
     	}
     	throw new RuntimeException("非实例事物，无法返回地址");

@@ -121,7 +121,7 @@ public class Thing implements Cloneable {
 		temp.id=id;
 		for(Attri shuxing:this.attris)
 		{
-			shuxing.clone(temp,shuxing.getType());
+			shuxing.clone(temp,shuxing.getName());
 		}
 		for(Negetivefun fun:functions)
 		{

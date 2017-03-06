@@ -8,7 +8,9 @@ public  class BaseFunction
 	World world;
 	
 	/**
-	 * 函数要作用的目标{@code Address}的集合
+	 * 函数要作用的目标{@code Address}的集合，
+	 * 也是要去更改的对象。
+	 * 每个函数都是为了改变才存在的
 	 */
 	public ArrayList<Address> desti=new ArrayList<>();
 
@@ -18,13 +20,16 @@ public  class BaseFunction
 	 */
 	public ArrayList<BaseFunction> linkedFunction =new ArrayList<>();
 
-	Functional hanshu;
+	public  Functional hanshu;
 	
     public	BaseFunction(Thing thing)
 	{
     	 this.belonged=thing;
     	 world=thing.world;
 	}
+
+
+
     
     public void setFunction(Functional hanshu)
     {
@@ -33,7 +38,7 @@ public  class BaseFunction
 
 
     /**
-     *
+     *用于远对象过程调用使用
      * @return 返回需要的参数列表
      */
     public ArrayList<String> getParams()
@@ -43,7 +48,8 @@ public  class BaseFunction
 
 
     /**
-     * @param change 需要发生的改变，也就是函数的逆函数
+     * @param change 需要发生的改变，也就是函数的逆函数，用于构建路径使用，
+	 *               这也是学习的核心函数，使用神经网络来构建
      * @return
      */
     Object predict(Address address,Object change)
@@ -69,6 +75,9 @@ public  class BaseFunction
      * 需要一种描述达到什么状态执行的的方法。
      */
    
-    
+    public Address getAddress()
+	{
+		return null;
+	}
 	
 }

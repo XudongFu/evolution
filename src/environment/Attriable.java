@@ -1,5 +1,8 @@
 package environment;
 
+/**
+ * 属性接口
+ */
 public  interface Attriable 
 {
 	void inite(Attri attri);
