@@ -1,7 +1,6 @@
 package environment;
 
 public class ThingNotFoundException extends RuntimeException {
-
 	/**
 	 * 
 	 */

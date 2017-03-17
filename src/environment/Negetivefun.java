@@ -4,37 +4,36 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- *
  * @author 付旭东
  *被动函数
  */
 public  class Negetivefun  extends BaseFunction 
 {
-
-
 	/**
 	 * 自己要监听的属性变化或者是函数调用，
 	 * 只有监听的函数被调用，或者属性被更改，这个函数就会被启动。
 	 */
-	ArrayList<Address> src=new ArrayList<>();
+	public ArrayList<Address> src=new ArrayList<>();
 	
 	/**
 	 * 检查函数是否启动
 	 */
 	 Checkable check;
-	 
-	public Negetivefun(Thing thing) 
-	{
-		super(thing);
-		belonged.functions.add(this);
-	}
-	
+
+	public Negetivefun(String name) {
+        super(name);
+    }
+
+    public Negetivefun(String name,Functional functional) {
+        super(name);
+        this.functionBody=functional;
+    }
+
 	public void setCheck(Checkable check)
 	{
 		this.check=check;
 	}
-	
-	
+
 	/**
 	 * 对函数变动可能会引发自己启动的属性注册自己
 	 * 只能监听自身的属性变化，不能监听其他事物的属性变化，进行响应，
@@ -58,29 +57,31 @@ public  class Negetivefun  extends BaseFunction
 						function.linkedFunction.add(this);
 					}
 				}
-			}
-		}
+			}}
 	}
-	
-	
+
+    /**
+     * 这个克隆函数有问题，被动函数应该可以做为单体移出，暂时不管这个了
+     * @param shiwu
+     * @return
+     */
 	public Negetivefun clone(Thing shiwu) 
 	{
-		Negetivefun p=new Negetivefun(shiwu);
-		p.hanshu=this.hanshu;
+		Negetivefun p=new Negetivefun(functionName);
+		p.functionBody =this.functionBody;
 		this.desti.forEach((r)->p.desti.add(r));
 		this.src.forEach((r)->p.src.add(r));
 		p.check=this.check;
-		return p;
+		shiwu.attachNegtiveFun(p);
+        return p;
 	}
 
 	
-	public void doIt() 
-	{
-		for(Address dest:desti)
-		{
+	public void doIt() {
+		for(Address dest:desti) {
 			//目的属性集合，如果是属性，计算出对属性应该应该做出的改变。
 			if(dest.type==Type.ATTRIBLE) {
-				Map<Attri, Object> t = hanshu.function(this, getAttris(dest));
+				Map<Attri, Object> t = functionBody.function(this, getAttris(dest));
 				if (world.isRecord) {
 					/**
 					 * 记录下所执行的变化
@@ -89,24 +90,13 @@ public  class Negetivefun  extends BaseFunction
 				reallyChange(t);
 			}
 			//如果是函数的话就直接调用函数，这里有问题，需要再次考虑
-			else
-			{
-
-
-			}
-		}
-
-
+			else {
+			}}
 	}
 
 	private void reallyChange(Map<Attri, Object> canshu) {
 		for (Attri shuxing : canshu.keySet()) {
-			shuxing.liandong(canshu.get(shuxing));
-		}
-	}
-	
-	void linkedStart()
-	{
+			shuxing.liandong(canshu.get(shuxing));}
 	}
 
 	/**
@@ -115,28 +105,26 @@ public  class Negetivefun  extends BaseFunction
 	 * @return
 	 */
 	public ArrayList<Attri> getAttris(Address dizhi) {
-		ArrayList<Attri> shuxingji = new ArrayList<>();
-		for (Thing intance : world.intanceThings) {
-			if (dizhi.id.equals("")) {
-				if (intance.getName().equals(dizhi.name)) {
-					for (Attri shuxing : intance.attris) {
-						if (shuxing.getName().equals(dizhi.attriName))
-							shuxingji.add(shuxing);
-					}
-				}
-			} 
-			else 
-			{
-				if (intance.getName().equals(dizhi.name)
-						&& intance.getId().equals(dizhi.id)) {
-					for (Attri shuxing : intance.attris) {
-						if (shuxing.getName().equals(dizhi.attriName))
-							shuxingji.add(shuxing);
-					}
-				}
-			}
-		}
-		return shuxingji;
+
+	    return world.getAttris(dizhi);
+//		ArrayList<Attri> shuxingji = new ArrayList<>();
+//		for (Thing intance : world.intanceThings)
+//		{
+//			if (dizhi.id.equals("")) {
+//				if (intance.getName().equals(dizhi.name)) {
+//                    for (Attri shuxing : intance.attris) {
+//                        if (shuxing.getName().equals(dizhi.attriName))
+//                            shuxingji.add(shuxing);
+//                    }}}
+//			else {
+//				if (intance.getName().equals(dizhi.name)
+//						&& intance.getId().equals(dizhi.id)) {
+//					for (Attri shuxing : intance.attris) {
+//						if (shuxing.getName().equals(dizhi.attriName))
+//							shuxingji.add(shuxing);
+//					}}}
+//		}
+//		return shuxingji;
 	}
 	
 	

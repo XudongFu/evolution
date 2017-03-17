@@ -1,7 +1,6 @@
 package environment;
 import java.util.ArrayList;
 
-
 /**
  * 事物是被动函数{@code Negetivefun}和属性{@code Attri}的集合
  * @author 付旭东
@@ -9,6 +8,9 @@ import java.util.ArrayList;
  */
 public class Thing implements Cloneable {
 
+	/**
+	 *事物所依附的时候的世界
+	 */
 	World world;
 
 	ArrayList<Attri> attris = new ArrayList<>();
@@ -67,32 +69,29 @@ public class Thing implements Cloneable {
 	 */
 	public void setTypeValue(String type, Object value)
 	{
-		
 	}
 	
 	/**
 	 * 向事物添加被动函数
 	 */
-	public void attachNegtiveFun(Negetivefun fun)
-	{
-		
+	public void attachNegtiveFun(Negetivefun fun){
+		functions.add(fun);
+		fun.belonged=this;
+		fun.world=this.world;
 	}
 	
 	
 	public void attachAttri(Attri attri) {
-		
+		attris.add(attri);
+		attri.belonged=this;
+		attri.world=this.world;
 	}
-	
 
-	public Thing(World world, String name) {
-		this.world = world;
-		world.modleThings.add(this);
-		this.name = name;
-		this.isIntance=false;
-	}
-	
-
-	protected Thing(String name){
+    /**
+     * 构造函数
+     * @param name
+     */
+    public Thing(String name){
 		this.name=name;
 	}
 	
@@ -105,26 +104,21 @@ public class Thing implements Cloneable {
 		return new Condition(this);
 	}
 	
-	
-	
-	
+
 
 	/**
 	 * 
 	 * @param id  新的事物的id，没有检验事物id的唯一性，为了得到全局唯一id的效果，从world获取，防止冲突
 	 * @return
 	 */
-	public Thing clone(String id) 
-	{
+	public Thing clone(String id) {
 		Thing temp=new Thing( this.name);
 		temp.world=this.world;
 		temp.id=id;
-		for(Attri shuxing:this.attris)
-		{
+		for(Attri shuxing:this.attris) {
 			shuxing.clone(temp,shuxing.getName());
 		}
-		for(Negetivefun fun:functions)
-		{
+		for(Negetivefun fun:functions) {
 			fun.clone(temp);
 		}
 		return temp;
@@ -133,14 +127,14 @@ public class Thing implements Cloneable {
 	/**
 	 * 将事物的所有的函数进行注册
 	 */
-	void registerFunToAttri()
-	{
-		for(Negetivefun fun:functions)
-		{
+	void registerFunToAttri() {
+		for(Negetivefun fun:functions) {
 			fun.registerSelf();
 		}
 	}
 	
-	
+
+
+
 	
 }

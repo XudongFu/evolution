@@ -6,7 +6,12 @@ public  class BaseFunction
 {
 	Thing belonged;
 	World world;
-	
+
+	/**
+	 * 函数也是需要名称的，代表执行动作的名称，为以后构建新的编程语言做准备
+	 */
+	String functionName;
+
 	/**
 	 * 函数要作用的目标{@code Address}的集合，
 	 * 也是要去更改的对象。
@@ -20,32 +25,33 @@ public  class BaseFunction
 	 */
 	public ArrayList<BaseFunction> linkedFunction =new ArrayList<>();
 
-	public  Functional hanshu;
-	
-    public	BaseFunction(Thing thing)
-	{
-    	 this.belonged=thing;
-    	 world=thing.world;
-	}
+    /**
+     * 函数体
+     */
+	public  Functional functionBody;
 
-
-
-    
-    public void setFunction(Functional hanshu)
-    {
-    	this.hanshu=hanshu;
+    /**
+     *
+     * @param funName  函数的名称，也代表所进行动作的名称
+     */
+    public	BaseFunction(String funName) {
+        functionName=funName;
     }
 
+    public void setFunction(Functional hanshu)
+    {
+    	this.functionBody =hanshu;
+    }
 
     /**
      *用于远对象过程调用使用
+     * 2017/3/16   这个需要重新考虑，这个函数会被抛弃
      * @return 返回需要的参数列表
      */
     public ArrayList<String> getParams()
     {
         return  null;
     }
-
 
     /**
      * @param change 需要发生的改变，也就是函数的逆函数，用于构建路径使用，
@@ -56,8 +62,7 @@ public  class BaseFunction
     {	
     	return null;
     }
-    
-	
+
     public	BaseFunction(World world)
    	{
        this.world=world;
