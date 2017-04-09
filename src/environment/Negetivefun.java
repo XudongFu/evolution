@@ -38,6 +38,11 @@ public  class Negetivefun  extends BaseFunction
 	 * 对函数变动可能会引发自己启动的属性注册自己
 	 * 只能监听自身的属性变化，不能监听其他事物的属性变化，进行响应，
 	 * 那函数调用的监听范围又是什么
+     * check检查被动函数是否启动，那么src存在的目的是什么，
+     * 怎么进行路径构建我也没有搞清楚呢
+     *
+	 * 这里注册的是源啊，怎么会出现问题呢？并没有出现问题，是check的问题，是世界的start函数造成的问题，
+	 *
 	 */
 	void registerSelf() {
 		for (Address dizhi : src) {
@@ -51,7 +56,7 @@ public  class Negetivefun  extends BaseFunction
 			}
 			if(dizhi.type==Type.FUNCTION)
 			{
-				for(BaseFunction function : belonged.functions) {
+				for(BaseFunction function : belonged.negetiveFunMap) {
 					if(function.getAddress().equals(dizhi))
 					{
 						function.linkedFunction.add(this);
@@ -65,8 +70,7 @@ public  class Negetivefun  extends BaseFunction
      * @param shiwu
      * @return
      */
-	public Negetivefun clone(Thing shiwu) 
-	{
+	public Negetivefun clone(Thing shiwu) {
 		Negetivefun p=new Negetivefun(functionName);
 		p.functionBody =this.functionBody;
 		this.desti.forEach((r)->p.desti.add(r));
@@ -105,28 +109,10 @@ public  class Negetivefun  extends BaseFunction
 	 * @return
 	 */
 	public ArrayList<Attri> getAttris(Address dizhi) {
-
 	    return world.getAttris(dizhi);
-//		ArrayList<Attri> shuxingji = new ArrayList<>();
-//		for (Thing intance : world.intanceThings)
-//		{
-//			if (dizhi.id.equals("")) {
-//				if (intance.getName().equals(dizhi.name)) {
-//                    for (Attri shuxing : intance.attris) {
-//                        if (shuxing.getName().equals(dizhi.attriName))
-//                            shuxingji.add(shuxing);
-//                    }}}
-//			else {
-//				if (intance.getName().equals(dizhi.name)
-//						&& intance.getId().equals(dizhi.id)) {
-//					for (Attri shuxing : intance.attris) {
-//						if (shuxing.getName().equals(dizhi.attriName))
-//							shuxingji.add(shuxing);
-//					}}}
-//		}
-//		return shuxingji;
 	}
-	
-	
-	
+
+
+
+
 }

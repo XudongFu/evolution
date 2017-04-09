@@ -2,7 +2,7 @@ package environment;
 
 import java.util.ArrayList;
 
-public  class BaseFunction 
+public  class BaseFunction implements IAddressable
 {
 	Thing belonged;
 	World world;
@@ -80,9 +80,11 @@ public  class BaseFunction
      * 需要一种描述达到什么状态执行的的方法。
      */
    
-    public Address getAddress()
-	{
-		return null;
+    public  Address getAddress() {
+        if(belonged.isIntance) {
+            Address address=new Address(belonged.getName(),functionName,belonged.getId(),Type.FUNCTION);
+            return  address;
+        }
+        throw new RuntimeException("非实例事物，无法返回地址");
 	}
-	
 }

@@ -90,7 +90,7 @@ public final class World {
 		    for (String s:res)
             {
                 Thing shiwu=intanceThings.get(s);
-                for (Negetivefun fun : shiwu.functions) {
+                for (Negetivefun fun : shiwu.negetiveFunMap) {
                     if (fun.check.check(fun)) {
                         happen = true;
                         fun.doIt();
@@ -179,7 +179,7 @@ public final class World {
         else {
 	        Set<String> key=intanceThings.keySet();
 	        for(String k:key) {
-                if(intanceThings.get(k).getName().equals(dizhi.name)) {
+                if(intanceThings.get(k).getName().equals(dizhi.thingName)) {
                     for (Attri s:intanceThings.get(k).attris) {
                         if(s.getName().equals(dizhi.attriName))
                             res.add(s);

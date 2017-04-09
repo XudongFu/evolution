@@ -2,8 +2,6 @@ package environment;
 
 import java.util.Map;
 import java.util.TreeMap;
-
-
 /***
  * 对于单个事物属性状态的描述，
  */

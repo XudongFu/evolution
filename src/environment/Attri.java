@@ -1,12 +1,10 @@
 package environment;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public  class Attri 
+public  class Attri implements IAddressable
 {
     /**
      * 所属的世界和事物
@@ -20,7 +18,7 @@ public  class Attri
 	private String name;
 
 	/**
-	 * 这个应该是作为接口使用还是成员变量使用呢？
+	 * 作为成员变量是为了能够支持克隆
 	 */
 	Attriable shuxing;
 	/**
@@ -31,9 +29,13 @@ public  class Attri
     /**
      * 这个是为了属性可以克隆所做的工作
      */
-	public Map<String, Integer> integerMap=new TreeMap<String, Integer>();
+	public Map<String, Integer> integerMap=new TreeMap<>();
 	public Map<String, String> stringMap=new TreeMap<>();
-    public Map<String,Boolean> booleanMap=new TreeMap<>();
+	public Map<String,Boolean> booleanMap=new TreeMap<>();
+	public Map<String,Float> floatMap=new TreeMap<>();
+    public Map<String,Double> doubleMap=new TreeMap<>();
+    public Map<String,Character> characterMap=new TreeMap<>();
+    public Map<String ,Long> longMap=new TreeMap<>();
 
 
     /**
@@ -49,17 +51,16 @@ public  class Attri
 	}
 
 
-   public Object getValue()
-   {
+   public Object getValue() {
 	   if(shuxing!=null)
 		   return shuxing.getValue(this);
-		   throw new RuntimeException("此属性参数有误");
+		   throw new RuntimeException("属性的获取值函数没有被设定");
    }
    
    public void setValue(Object change) {
 	   if(shuxing!=null)
 		   shuxing.setValue(this,change);
-		   throw new RuntimeException("此属性参数有误");
+		   throw new RuntimeException("属性的设置值函数没有被设定");
    }
    
    
@@ -67,36 +68,29 @@ public  class Attri
     * 
     * @param change
     */
-   void liandong(Object change)
-   {
+    void liandong(Object change) {
 	   shuxing.setValue(this,change);
-	   for(Negetivefun beidong:linkedFun)
-	   {
-		   if(beidong.check.check(beidong))
-		   {
+	   for(Negetivefun beidong:linkedFun) {
+		   if(beidong.check.check(beidong)) {
 			   beidong.doIt();
 		   }
 	   }
    }
    
-   public String getName()
+    public String getName()
    {
 	return name;
    }
    
 
-    protected Attri clone(Thing shiwu,String type)
-    {
+    public Attri clone(Thing shiwu,String type) {
     	Attri shu=new Attri( type,this.shuxing);
     	shiwu.attachAttri(shu);
     	return shu;
     }
-   
-    
-    public Address getAddress() 
-    {
-    	if(belonged.isIntance)
-    	{
+
+    public Address getAddress() {
+    	if(belonged.isIntance) {
     		Address dizhi=new Address(name,belonged.getId(),belonged.getName(),Type.ATTRIBLE);
         	return dizhi;
     	}

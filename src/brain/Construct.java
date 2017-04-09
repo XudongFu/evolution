@@ -20,7 +20,6 @@ public class Construct
 			@Override
 			public int compare(Node o1, Node o2) {
 
-
 				if (o1.relationship.contains(o2.self)
 						&& o2.relationship.contains(o1.self)) {
 					throw new RuntimeException("");

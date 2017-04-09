@@ -11,4 +11,5 @@ public interface Functional
      * @return 针对每个目标函数，需要进行的更改
      */
      Map<Attri, Object> function(Negetivefun fun,ArrayList<Attri> desit);
+
 }

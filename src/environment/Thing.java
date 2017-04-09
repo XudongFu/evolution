@@ -1,5 +1,7 @@
 package environment;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 事物是被动函数{@code Negetivefun}和属性{@code Attri}的集合
@@ -12,10 +14,22 @@ public class Thing implements Cloneable {
 	 *事物所依附的时候的世界
 	 */
 	World world;
-
+    /**
+     * 需要将这个该为键值对，以后再改
+     */
 	ArrayList<Attri> attris = new ArrayList<>();
 
-	ArrayList<Negetivefun> functions = new ArrayList<>();
+    /**
+     * 需要将这个该为键值对，以后再改
+     * 被动函数集
+     */
+	ArrayList<Negetivefun> negetiveFunMap = new ArrayList<>();
+
+    /**
+     * 主动函数集合，
+     */
+	Map<String,PositiveFun> positiveFunMap=new TreeMap<>();
+
 
 	/**
 	 * 事物的名字，代表一类事物
@@ -75,11 +89,21 @@ public class Thing implements Cloneable {
 	 * 向事物添加被动函数
 	 */
 	public void attachNegtiveFun(Negetivefun fun){
-		functions.add(fun);
+		negetiveFunMap.add(fun);
 		fun.belonged=this;
 		fun.world=this.world;
 	}
-	
+
+    /**
+     * 附加主动函数
+     * @param fun
+     */
+	public void attachPositiveFun(PositiveFun fun)
+    {
+        positiveFunMap.put(fun.functionName,fun);
+        fun.belonged=this;
+        fun.world=this.world;
+    }
 	
 	public void attachAttri(Attri attri) {
 		attris.add(attri);
@@ -118,7 +142,7 @@ public class Thing implements Cloneable {
 		for(Attri shuxing:this.attris) {
 			shuxing.clone(temp,shuxing.getName());
 		}
-		for(Negetivefun fun:functions) {
+		for(Negetivefun fun: negetiveFunMap) {
 			fun.clone(temp);
 		}
 		return temp;
@@ -128,7 +152,7 @@ public class Thing implements Cloneable {
 	 * 将事物的所有的函数进行注册
 	 */
 	void registerFunToAttri() {
-		for(Negetivefun fun:functions) {
+		for(Negetivefun fun: negetiveFunMap) {
 			fun.registerSelf();
 		}
 	}

@@ -6,7 +6,6 @@ import java.util.Map;
 import environment.*;
 
 public class MainTest {
-
 	public static void main(String[] args) {
 			World world=new World("first");
 			Thing huo=new Thing("huo");
@@ -33,11 +32,11 @@ public class MainTest {
 					{
 						if((int)a.getValue()<95) {
 							bianhua.put(a,5);
-							System.out.println(a.getAddress().name+",id为： "+a.getAddress().id+"的温度增加了5度,变为了"+((int)a.getValue()+5));
+							System.out.println(a.getAddress().thingName +",id为： "+a.getAddress().id+"的温度增加了5度,变为了"+((int)a.getValue()+5));
 						}
 						else {
 							bianhua.put(a, 100-(int)a.getValue());
-							System.out.println(a.getAddress().name+"的温度达到了100度");
+							System.out.println(a.getAddress().thingName +"的温度达到了100度");
 						}
 					}
 					System.out.println("遍历一次");
