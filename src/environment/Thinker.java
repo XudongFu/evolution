@@ -14,7 +14,6 @@ public class Thinker {
 
     public Way fightOutWay(BaseExcepton excepton)
     {
-
         return  null;
     }
 
