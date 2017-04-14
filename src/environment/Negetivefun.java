@@ -29,6 +29,10 @@ public  class Negetivefun  extends BaseFunction
         this.functionBody=functional;
     }
 
+	/**
+	 * 可能不需要check函数，之后可能会被删除
+	 * @param check
+	 */
 	public void setCheck(Checkable check)
 	{
 		this.check=check;
@@ -85,13 +89,23 @@ public  class Negetivefun  extends BaseFunction
 		for(Address dest:desti) {
 			//目的属性集合，如果是属性，计算出对属性应该应该做出的改变。
 			if(dest.type==Type.ATTRIBLE) {
-				Map<Attri, Object> t = functionBody.function(this, getAttris(dest));
-				if (world.isRecord) {
-					/**
-					 * 记录下所执行的变化
-					 */
-				}
-				reallyChange(t);
+
+			    try {
+                    Map<Attri, Object> t = functionBody.function(this, getAttris(dest));
+                    if (world.isRecord) {
+                        /**
+                         * 计划记录下所执行的变化，
+                         */
+
+
+                    }
+                    reallyChange(t);
+                }
+				catch (BaseExcepton e)
+                {
+                    Way path= belonged.thinker.fightOutWay(e);
+                    belonged.executeWay(path);
+                }
 			}
 			//如果是函数的话就直接调用函数，这里有问题，需要再次考虑
 			else {

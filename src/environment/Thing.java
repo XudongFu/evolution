@@ -19,6 +19,12 @@ public class Thing implements Cloneable {
      */
 	ArrayList<Attri> attris = new ArrayList<>();
 
+	/**
+	 * 默认的用于路径构造的类
+	 */
+	Thinker thinker;
+
+
     /**
      * 需要将这个该为键值对，以后再改
      * 被动函数集
@@ -84,7 +90,13 @@ public class Thing implements Cloneable {
 	public void setTypeValue(String type, Object value)
 	{
 	}
-	
+
+	public void invokePositiveFun(String positiveFunName)
+    {
+
+    }
+
+
 	/**
 	 * 向事物添加被动函数
 	 */
@@ -127,8 +139,6 @@ public class Thing implements Cloneable {
 	Condition getCondition() {
 		return new Condition(this);
 	}
-	
-
 
 	/**
 	 * 
@@ -158,6 +168,16 @@ public class Thing implements Cloneable {
 	}
 	
 
+	public void executeWay(Way way)
+	{
+		try{
+
+		}
+		catch (BaseExcepton excepton)
+		{
+
+		}
+	}
 
 
 	

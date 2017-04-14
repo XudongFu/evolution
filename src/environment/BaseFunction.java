@@ -87,4 +87,21 @@ public  class BaseFunction implements IAddressable
         }
         throw new RuntimeException("非实例事物，无法返回地址");
 	}
+
+
+    /**
+     * 获取函数的具体描述，事物自己可以提供这个函数也可以不提供这个函数，
+     * 不提供的话，系统就需要自己构建，
+     * @return
+     */
+	Tentacle getTentacle()
+    {
+        return  null;
+    }
+
+    public String getFunctionName()
+    {
+        return  functionName;
+    }
+
 }
