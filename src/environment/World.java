@@ -1,4 +1,6 @@
 package environment;
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +20,7 @@ public final class World {
      * 存在的实例事物
      * 建立Id 和事物之间的键值对
      */
-    private Map<String,Thing> intanceThings =new TreeMap<>();
+     Map<String,Thing> intanceThings =new TreeMap<>();
     /**
      * 存在的模型事物
      * 建立name和thing之间的键值对
@@ -44,6 +46,10 @@ public final class World {
      *当前要达到的目标
      */
     private Condition ambition;
+    /**
+     * 路径构建模块
+     */
+    private  Thinker thinker;
 	/**
 	 * 
 	 * @return 返回是否需要对世界的运行进行记录
@@ -155,10 +161,8 @@ public final class World {
 	 * @param name 要获取的事物的名称
 	 * @param id   事物将要被设置的id，
 	 * @return   返回制定name和id事物的实例
-     *
-     *
 	 */
-	public Thing getIntanceThingOfName(String name, String id) {
+	public Thing createIntanceThingOfName(String name, String id) {
 	    Thing temp=modleThings.get(name).clone(id);
 	   temp.isIntance=true;
 	    intanceThings.put(id,temp);
@@ -166,7 +170,27 @@ public final class World {
 	    return temp;
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
+	public Thing findIntacneThingById(String id)
+    {
+        if(intanceThings.containsKey(id))
+        {
+            return  intanceThings.get(id);
+        }
+        else
+            return  null;
+    }
 
+
+	/**
+	 *  根据地址获取属性列表
+	 * @param dizhi
+	 * @return
+	 */
 	public ArrayList<Attri> getAttris(Address dizhi) {
         ArrayList<Attri> res=new ArrayList<>();
 	    if(dizhi.id.equals("")==false) {
@@ -188,6 +212,40 @@ public final class World {
         }
         return res;
     }
+
+    /**
+     * 实现某种目标
+     * @param id  发出请求的实例事物的id
+     * @param ambition 希望达到的目标
+     */
+    public void reachAmbition(String id,Condition ambition)
+    {
+        Way path= thinker.fightOutWay(ambition);
+        execWay(path);
+    }
+
+    /**
+	 * 按照预定方式执行路径
+	 *
+	 * 执行成功的含义是状态转换按照预定方式进行，
+	 * 如果没有按照预定的方式进行的话分为两种结果，一种是目的达到，另一种是目的达不到，
+	 *
+	 * 暂时还不能进行状态判定，我写代码已经写的有点懵逼了，以后再写内容包括
+	 * （不能达到目的的两种结果的处理 ）-----不能达到状态的话引发异常，异常中描述清楚执行中存在的问题。
+	 *
+     * @return
+     */
+	private void execWay(Way way) {
+		PositiveFun fun;
+		while ((fun= way.getNextPosiFun())!=null)
+		{
+			//需要进行状态验证，暂时还没有
+
+			//执行状态函数
+			fun.doIt();
+		}
+    }
+
 
 	/**
 	 * 连接属性指向函数的连线

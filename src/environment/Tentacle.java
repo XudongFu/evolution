@@ -31,7 +31,7 @@ public class Tentacle {
     }
 
     /**
-     *
+     * 添加一条记录
      * @param src
      * @param desiit
      */
@@ -57,6 +57,22 @@ public class Tentacle {
     }
 
 
+    /**
+     * 检验某种状态状态转换的可行性，如果可行返回true，否则返回false。
+     * @param src
+     * @param desite
+     * @return
+     */
+    public boolean check(Condition src,Condition desite)
+    {
+        ArrayList<Condition> srcs=reach(desite);
+        if(srcs!=null && srcs.contains(src))
+        {
+            return true;
+        }
+        else
+            return  false;
+    }
 
 
 }

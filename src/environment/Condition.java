@@ -9,11 +9,11 @@ public class Condition
 {
 	String name;
 	String id;
-	
+	Thing thing;
 	Map<String, Object> attri=new TreeMap<String, Object>();
-	
-	public Condition(Thing thing) 
-	{
+
+	public Condition(Thing thing) {
+	    this.thing=thing;
 		name=thing.getName();
 		id=thing.getId();
 		for(Attri shuxing:thing.attris)
@@ -21,6 +21,5 @@ public class Condition
 			attri.put(shuxing.getName(), shuxing.shuxing.getValue(shuxing));
 		}
 	}
-	
 	
 }

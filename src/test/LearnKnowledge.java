@@ -20,9 +20,11 @@ public class LearnKnowledge
         （自己的亮度为亮），（开灯也是一个主动函数，主动函数才是路径搜索过程中，可以
         调用的函数，被动函数不能被调用）。小明这个时候可以启动自己的路径搜索工具，建立到达
         学习提出的目的状态的路径并且执行。
+        代码好像写的差不多了，
+
+        我可以写一写代码来测试一下了，试一下构建代码的能力
+
     * */
-
-
 
     public static void main(String[] args)
     {
@@ -30,7 +32,7 @@ public class LearnKnowledge
 
         World home=new World("homeTest");
 
-        Thing people=new Thing("xiaoming");
+        Thing xiaoming=new Thing("xiaoming");
 
         // 灯需要增加一个开关属性，人可以改变开关属性，开关属性的改变会引发被动函数（灯发光）的启动，
         // 被动函数启动后，会引发书本的亮度改变，亮度改变人才可以进行学习，
@@ -57,7 +59,7 @@ public class LearnKnowledge
             }
         });
 
-        people.attachAttri(bright);
+        xiaoming.attachAttri(bright);
         book.attachAttri(bright);
 
         Attri grade=new Attri("grade", new Attriable() {
@@ -76,7 +78,7 @@ public class LearnKnowledge
             }
         });
 
-        people.attachAttri(grade);
+        xiaoming.attachAttri(grade);
 
         /**
          * 学习函数中，其中应该包含一个目的，使得书本的亮度为亮，建立事物的状态，
@@ -125,9 +127,9 @@ public class LearnKnowledge
             }
         });
 
-        people.attachNegtiveFun(readBook);
-        people.attachNegtiveFun(turnLampOn);
-        home.attachModleThing(people);
+        xiaoming.attachNegtiveFun(readBook);
+        xiaoming.attachNegtiveFun(turnLampOn);
+        home.attachModleThing(xiaoming);
         home.attachModleThing(lamp);
         home.attachModleThing(book);
         home.addIntanceThingFromModel("xiaoming","xiaoming");
