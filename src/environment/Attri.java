@@ -10,6 +10,7 @@ public  class Attri implements IAddressable
      * 所属的世界和事物
      */
     World world;
+
 	Thing belonged;
 
 	/**
@@ -37,7 +38,6 @@ public  class Attri implements IAddressable
     public Map<String,Character> characterMap=new TreeMap<>();
     public Map<String ,Long> longMap=new TreeMap<>();
 
-
     /**
      *
      * @param name 属性的名称或者叫做类型
@@ -50,7 +50,6 @@ public  class Attri implements IAddressable
 		shu.inite(this);
 	}
 
-
    public Object getValue() {
 	   if(shuxing!=null)
 		   return shuxing.getValue(this);
@@ -62,8 +61,7 @@ public  class Attri implements IAddressable
 		   shuxing.setValue(this,change);
 		   throw new RuntimeException("属性的设置值函数没有被设定");
    }
-   
-   
+
    /**
     * 
     * @param change
@@ -81,7 +79,6 @@ public  class Attri implements IAddressable
    {
 	return name;
    }
-   
 
     public Attri clone(Thing shiwu,String type) {
     	Attri shu=new Attri( type,this.shuxing);
@@ -89,12 +86,20 @@ public  class Attri implements IAddressable
     	return shu;
     }
 
-    public Address getAddress() {
+	/**
+	 *
+	 * @return
+	 */
+	//这个函数有问题，需要改
+	public Address getAddress() {
     	if(belonged.isIntance) {
-    		Address dizhi=new Address(name,belonged.getId(),belonged.getName(),Type.ATTRIBLE);
+    		Address dizhi=new Address(belonged.getName(),name,belonged.getId(),Type.ATTRIBLE);
         	return dizhi;
     	}
-    	throw new RuntimeException("非实例事物，无法返回地址");
+    	else {
+            Address dizhi=new Address(belonged.getName(),name,"",Type.ATTRIBLE);
+            return  dizhi;
+        }
 	}
 
 }

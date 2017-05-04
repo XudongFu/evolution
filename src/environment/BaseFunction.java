@@ -31,6 +31,17 @@ public  class BaseFunction implements IAddressable
 	public  Functional functionBody;
 
     /**
+     * 自己要监听的属性变化或者是函数调用，
+     * 只有监听的函数被调用，或者属性被更改，这个函数就会被启动。
+     */
+    public ArrayList<Address> src=new ArrayList<>();
+
+    /**
+     * 每个函数都拥有的Tentacle属性
+     */
+	public Tentacle Tentacle;
+
+    /**
      *
      * @param funName  函数的名称，也代表所进行动作的名称
      */
@@ -38,16 +49,35 @@ public  class BaseFunction implements IAddressable
         functionName=funName;
     }
 
+
+
     public void setFunction(Functional hanshu)
     {
     	this.functionBody =hanshu;
     }
 
     /**
+     * functionBody.getTentacle()返回为空的情况下，填充一个tentacle。
+     * @param tentacle
+     */
+    public void attachTentacle(Tentacle tentacle )
+    {
+        environment.Tentacle tentacle1=functionBody.getTentacle();
+        if(tentacle1==null) {
+            this.Tentacle=tentacle;
+        }
+        else
+            //这里返回 RuntimeException可能不太好，以后可以改一下。
+            throw  new RuntimeException("functionBody.getTentacle()不为空，不建议进行替换");
+    }
+
+
+    /**
      *用于远对象过程调用使用
      * 2017/3/16   这个需要重新考虑，这个函数会被抛弃
      * @return 返回需要的参数列表
      */
+    @Deprecated
     public ArrayList<String> getParams()
     {
         return  null;
@@ -58,6 +88,7 @@ public  class BaseFunction implements IAddressable
 	 *               这也是学习的核心函数，使用神经网络来构建
      * @return
      */
+    @Deprecated
     Object predict(Address address,Object change)
     {	
     	return null;
@@ -89,19 +120,25 @@ public  class BaseFunction implements IAddressable
 	}
 
 
-    /**
-     * 获取函数的具体描述，事物自己可以提供这个函数也可以不提供这个函数，
-     * 不提供的话，系统就需要自己构建，
-     * @return
-     */
-	Tentacle getTentacle()
-    {
-        return  null;
-    }
-
     public String getFunctionName()
     {
         return  functionName;
     }
+
+    /**
+     * 这里必须进行检验，如果不被包含在src中，那么就返回错误
+     * @param dizhi dizhi必须被被包含在src中
+     * @return 获取匹配address的属性
+     */
+    public ArrayList<Attri> getAttris(Address dizhi) {
+
+        if(src.contains(dizhi)) {
+            return world.getAttris(dizhi);
+        }
+     else
+         throw  new RuntimeException("地址不被包含在源属性中，获取属性集失败");
+    }
+
+
 
 }

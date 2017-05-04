@@ -1,11 +1,11 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *这里是主动函数，
  * 需要设定一个类似于主函数一样的东西。
- *
  * 主动函数还存在一些问题，
  */
 public  class PositiveFun extends BaseFunction
@@ -14,29 +14,57 @@ public  class PositiveFun extends BaseFunction
 	{
 		super(name);
 	}
-    public ArrayList<Address> src=new ArrayList<>();
-
-	public Runnable run;
 
     /**
      *  启动被动函数的执行
      */
-    public  void doIt()
-    {
-        if(run!=null)
-        {
-            run.run();
-        }
+    public  void doIt() {
+        for(Address dest:desti) {
+            //目的属性集合，如果是属性，计算出对属性应该应该做出的改变。
+            if(dest.type==Type.ATTRIBLE) {
+                try {
+                    Map<Attri, Object> t = functionBody.function(this, getAttris(dest));
+                    if (world.isRecord) {
+                        /**
+                         * 计划记录下所执行的变化，
+                         */
+                    }
+                    reallyChange(t);
+                }
+                catch (BaseExcepton e)
+                {
+                    //Way path= belonged.thinker.fightOutWay(e);
+                    //belonged.executeWay(path);
+                }
+            }
+            //如果是函数的话就直接调用函数，这里有问题，需要再次考虑
+            else {
+
+
+            }}
     }
-    @Override
-    public Object clone()
-    {
-        return null;
+
+    /**
+     * @param name 主动函数的名称
+     * @param functional  主动函数要执行的函数内容
+     */
+    public PositiveFun(String name,Functional functional) {
+        super(name);
+       this.functionBody=functional;
     }
 
 
 
+    public PositiveFun clone(Thing thing) {
+       PositiveFun positiveFun=new PositiveFun(functionName);
+       positiveFun.functionBody=this.functionBody;
+        thing.attachPositiveFun(positiveFun);
+        return  positiveFun;
+    }
 
-
+    private void reallyChange(Map<Attri, Object> canshu) {
+        for (Attri shuxing : canshu.keySet()) {
+            shuxing.liandong(canshu.get(shuxing));}
+    }
 
 }

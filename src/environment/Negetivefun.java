@@ -9,12 +9,7 @@ import java.util.Map;
  */
 public  class Negetivefun  extends BaseFunction 
 {
-	/**
-	 * 自己要监听的属性变化或者是函数调用，
-	 * 只有监听的函数被调用，或者属性被更改，这个函数就会被启动。
-	 */
-	public ArrayList<Address> src=new ArrayList<>();
-	
+
 	/**
 	 * 检查函数是否启动
 	 */
@@ -50,7 +45,6 @@ public  class Negetivefun  extends BaseFunction
 	 */
 	void registerSelf() {
 		for (Address dizhi : src) {
-
 			if(dizhi.type==Type.ATTRIBLE) {
 				for (Attri shuxing : belonged.attris) {
 					if (dizhi.equals(shuxing.getAddress())) {
@@ -58,8 +52,7 @@ public  class Negetivefun  extends BaseFunction
 					}
 				}
 			}
-			if(dizhi.type==Type.FUNCTION)
-			{
+			if(dizhi.type==Type.FUNCTION) {
 				for(BaseFunction function : belonged.negetiveFunMap) {
 					if(function.getAddress().equals(dizhi))
 					{
@@ -83,50 +76,33 @@ public  class Negetivefun  extends BaseFunction
 		shiwu.attachNegtiveFun(p);
         return p;
 	}
-
 	
 	public void doIt() {
 		for(Address dest:desti) {
 			//目的属性集合，如果是属性，计算出对属性应该应该做出的改变。
 			if(dest.type==Type.ATTRIBLE) {
-
 			    try {
                     Map<Attri, Object> t = functionBody.function(this, getAttris(dest));
                     if (world.isRecord) {
                         /**
                          * 计划记录下所执行的变化，
                          */
-
-
                     }
                     reallyChange(t);
                 }
 				catch (BaseExcepton e)
                 {
-                    Way path= belonged.thinker.fightOutWay(e);
-                    belonged.executeWay(path);
+                    //Way path= belonged.thinker.fightOutWay(e);
+                    //belonged.executeWay(path);
                 }
 			}
 			//如果是函数的话就直接调用函数，这里有问题，需要再次考虑
 			else {
 			}}
 	}
-
 	private void reallyChange(Map<Attri, Object> canshu) {
 		for (Attri shuxing : canshu.keySet()) {
 			shuxing.liandong(canshu.get(shuxing));}
 	}
-
-	/**
-	 * 获取匹配address的属性
-	 * @param dizhi
-	 * @return
-	 */
-	public ArrayList<Attri> getAttris(Address dizhi) {
-	    return world.getAttris(dizhi);
-	}
-
-
-
 
 }

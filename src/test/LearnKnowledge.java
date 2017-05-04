@@ -2,7 +2,6 @@ package test;
 
 import environment.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -80,55 +79,38 @@ public class LearnKnowledge
 
         xiaoming.attachAttri(grade);
 
-        /**
-         * 学习函数中，其中应该包含一个目的，使得书本的亮度为亮，建立事物的状态，
-         */
-        Negetivefun readBook=new Negetivefun("readBook", new Functional() {
+
+        // 需要先检查源属性，自己的亮度，如果亮度为暗，那么就返回一个错误， 继承自baseException，
+        PositiveFun learn=new PositiveFun("readBook", new Functional() {
             @Override
-            public Map<Attri, Object> function(Negetivefun fun, ArrayList<Attri> desit) {
-                HashMap<Attri,Object> res=new HashMap<>();
-                for(Attri attri:desit) {
-                    res.put(attri,new Integer(10));
-                    System.out.println("学习成绩增加十分，现在成绩为："+attri.getValue().toString());
-                }
-                return  res;
+            public Map<Attri, Object> function(BaseFunction fun, ArrayList<Attri> desit) {
+
+                return null;
             }
-        });
-
-        /**
-         * 读书添加源属性，表示要监听书本的亮度变化，当亮度为暗的时候，
-         */
-        readBook.src.add(new Address("xiaoming","bright","",Type.ATTRIBLE));
-
-        //当书本的亮度发生的时候，需要提交一个灯光异常。事物需要捕获这个异常，
-
-
-
-        Negetivefun turnLampOn=new Negetivefun("turnLampOn", new Functional() {
             @Override
-            public Map<Attri, Object> function(Negetivefun fun, ArrayList<Attri> desit) {
+            public Tentacle getTentacle() {
                 return null;
             }
         });
 
-        Address gradeAddress=new Address("xiaoming","grade","",Type.ATTRIBLE);
+        learn.desti.add(grade.getAddress());
+        xiaoming.attachPositiveFun(learn);
 
-        readBook.desti.add(gradeAddress);
 
-        readBook.setCheck(new Checkable() {
+        PositiveFun turnLampOn=new PositiveFun("turnLampOn", new Functional() {
             @Override
-            public boolean check(Negetivefun fun) {
-               if(l.sum<5) {
-                   l.sum++;
-                   return  true;
-               }
-               else
-                   return  false;
+            public Map<Attri, Object> function(BaseFunction fun, ArrayList<Attri> desit) {
+                return null;
             }
+
+            public Tentacle getTentacle() {return  null;}
+
         });
 
-        xiaoming.attachNegtiveFun(readBook);
-        xiaoming.attachNegtiveFun(turnLampOn);
+
+
+        xiaoming.attachPositiveFun(learn);
+        xiaoming.attachPositiveFun(turnLampOn);
         home.attachModleThing(xiaoming);
         home.attachModleThing(lamp);
         home.attachModleThing(book);
@@ -137,6 +119,12 @@ public class LearnKnowledge
         home.addIntanceThingFromModel("book","book");
         System.out.println("学习世界开始运行");
         home.start();
+
+        xiaoming.invokePositiveFun("learn");
+        xiaoming.invokePositiveFun("learn");
+        xiaoming.invokePositiveFun("learn");
+        xiaoming.invokePositiveFun("learn");
+        xiaoming.invokePositiveFun("learn");
 
     }
 

@@ -18,13 +18,10 @@ public class Thing implements Cloneable {
      * 需要将这个该为键值对，以后再改
      */
 	ArrayList<Attri> attris = new ArrayList<>();
-
 	/**
 	 * 默认的用于路径构造的类
 	 */
 	Thinker thinker;
-
-
     /**
      * 需要将这个该为键值对，以后再改
      * 被动函数集
@@ -35,7 +32,6 @@ public class Thing implements Cloneable {
      * 主动函数集合，
      */
 	Map<String,PositiveFun> positiveFunMap=new TreeMap<>();
-
 
 	/**
 	 * 事物的名字，代表一类事物
@@ -87,15 +83,22 @@ public class Thing implements Cloneable {
 	 * @param type
 	 * @param value
 	 */
-	public void setTypeValue(String type, Object value)
-	{
+	public void setTypeValue(String type, Object value) {
 	}
 
-	public void invokePositiveFun(String positiveFunName)
-    {
-
+    /**
+     * 激活事物包含的某个主动函数
+     * @param positiveFunName 要启动的主动函数的名称
+     */
+	public void invokePositiveFun(String positiveFunName) {
+		PositiveFun fun=positiveFunMap.get(positiveFunName);
+		if(fun!=null) {
+            fun.doIt();
+        }
+        else {
+            throw  new RuntimeException("参数错误，不包含名为'"+positiveFunName+"'的主动函数");
+        }
     }
-
 
 	/**
 	 * 向事物添加被动函数
@@ -110,8 +113,7 @@ public class Thing implements Cloneable {
      * 附加主动函数
      * @param fun
      */
-	public void attachPositiveFun(PositiveFun fun)
-    {
+	public void attachPositiveFun(PositiveFun fun) {
         positiveFunMap.put(fun.functionName,fun);
         fun.belonged=this;
         fun.world=this.world;
@@ -155,6 +157,7 @@ public class Thing implements Cloneable {
 		for(Negetivefun fun: negetiveFunMap) {
 			fun.clone(temp);
 		}
+		positiveFunMap.forEach((x,y)->y.clone(temp));
 		return temp;
 	}
 
@@ -166,19 +169,7 @@ public class Thing implements Cloneable {
 			fun.registerSelf();
 		}
 	}
-	
-
-	public void executeWay(Way way)
-	{
-		try{
-
-		}
-		catch (BaseExcepton excepton)
-		{
-
-		}
-	}
 
 
-	
+
 }

@@ -25,10 +25,11 @@ public class Tentacle {
     /**
      * @param fun 建立该被动函数的触须
      */
-    public Tentacle(Negetivefun fun) {
+    public Tentacle(BaseFunction fun) {
         described=fun.getAddress();
         functionName=fun.getFunctionName();
     }
+
 
     /**
      * 添加一条记录

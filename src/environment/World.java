@@ -236,13 +236,19 @@ public final class World {
      * @return
      */
 	private void execWay(Way way) {
-		PositiveFun fun;
-		while ((fun= way.getNextPosiFun())!=null)
-		{
-			//需要进行状态验证，暂时还没有
+		try{
+			PositiveFun fun;
+			while ((fun= way.getNextPosiFun())!=null)
+			{
+				//需要进行状态验证，暂时还没有
 
-			//执行状态函数
-			fun.doIt();
+				//执行状态函数
+				fun.doIt();
+			}
+		}
+		catch (BaseExcepton excepton)
+		{
+
 		}
     }
 
