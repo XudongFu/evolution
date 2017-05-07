@@ -12,7 +12,7 @@ public interface Functional
      */
      Map<Attri, Object> function(BaseFunction fun,ArrayList<Attri> desit);
 
-     Tentacle getTentacle();
+     Tentacle getTentacle(BaseFunction fun);
 
 
 }

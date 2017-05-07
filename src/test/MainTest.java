@@ -14,6 +14,7 @@ public class MainTest {
 			Address mudi=new Address("shui","wendu","",Type.ATTRIBLE);
 			heat.desti.add(mudi);
 			huo.attachNegtiveFun(heat);
+			heat.src.add(mudi);
 			heat.setCheck(new Checkable() {
 				@Override
 				public boolean check(Negetivefun fun) {
@@ -26,7 +27,7 @@ public class MainTest {
 			});
 			heat.setFunction(new Functional() {
 				@Override
-				public Map<Attri, Object> function(Negetivefun fun,ArrayList<Attri> desit) {
+				public Map<Attri, Object> function(BaseFunction fun,ArrayList<Attri> desit) {
 					Map<Attri, Object> bianhua=new HashMap<>();
 					for(Attri a:desit)
 					{
@@ -41,6 +42,10 @@ public class MainTest {
 					}
 					System.out.println("遍历一次");
 					return bianhua;
+				}
+				@Override
+				public Tentacle getTentacle(BaseFunction fun) {
+					return null;
 				}
 			});
 			

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public  class BaseFunction implements IAddressable
 {
-	Thing belonged;
-	World world;
+	public Thing belonged;
+	public World world;
 
 	/**
 	 * 函数也是需要名称的，代表执行动作的名称，为以后构建新的编程语言做准备
@@ -33,6 +33,9 @@ public  class BaseFunction implements IAddressable
     /**
      * 自己要监听的属性变化或者是函数调用，
      * 只有监听的函数被调用，或者属性被更改，这个函数就会被启动。
+     *
+     * 也就是说对与src的限定必须被限定起来，否则就会破坏规则，
+     * 暂时就不进行限定了。
      */
     public ArrayList<Address> src=new ArrayList<>();
 
@@ -62,7 +65,7 @@ public  class BaseFunction implements IAddressable
      */
     public void attachTentacle(Tentacle tentacle )
     {
-        environment.Tentacle tentacle1=functionBody.getTentacle();
+        environment.Tentacle tentacle1=functionBody.getTentacle(this);
         if(tentacle1==null) {
             this.Tentacle=tentacle;
         }
@@ -71,6 +74,17 @@ public  class BaseFunction implements IAddressable
             throw  new RuntimeException("functionBody.getTentacle()不为空，不建议进行替换");
     }
 
+    /**
+     *
+     * @return 获取函数的 tentacle，每个函数对应一个tentacle.
+     */
+    public Tentacle getTentacle()
+    {
+        if(Tentacle!=null)
+            return  Tentacle;
+        else
+            return functionBody.getTentacle(this);
+    }
 
     /**
      *用于远对象过程调用使用
@@ -127,9 +141,17 @@ public  class BaseFunction implements IAddressable
 
     /**
      * 这里必须进行检验，如果不被包含在src中，那么就返回错误
+     *
+     * 这里存在问题，这里的本意是src必须是事物自身的属性中的一部分，
+     * 但是是上，这里的限定失败。
+     *
+     * 这里存在问题，这里的本意是src必须是事物自身的属性中的一部分，* 但是是上，这里的限定失败。
+     *
+     * 这个是供外部使用的
      * @param dizhi dizhi必须被被包含在src中
      * @return 获取匹配address的属性
      */
+    @Deprecated
     public ArrayList<Attri> getAttris(Address dizhi) {
 
         if(src.contains(dizhi)) {
@@ -138,6 +160,12 @@ public  class BaseFunction implements IAddressable
      else
          throw  new RuntimeException("地址不被包含在源属性中，获取属性集失败");
     }
+
+
+
+
+
+
 
 
 

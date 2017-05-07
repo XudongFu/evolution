@@ -23,23 +23,25 @@ public class Thinker {
 
     ArrayList<Negetivefun> negetivefuns;
 
-    public Thinker() {
+    public Thinker(World world) {
+        belonged=world;
         readyBaseParamters();
         positiveFuns=getAllPositiveFun();
         negetivefuns=getAllNegetiveFun();
     }
 
-
-    public Way fightOutWay(BaseExcepton excepton) {
+    @Deprecated
+    public Way fightOutWay(BaseException excepton) {
         return null;
     }
 
 
-
+    @Deprecated
     public Way fightOutWay(Condition desire) {
         return null;
     }
 
+    @Deprecated
     public Way fightOutWay(Condition desire, Address attri) {
         return null;
     }
@@ -55,7 +57,6 @@ public class Thinker {
      */
     @Deprecated
     public Way fightOutWay(String desitId, Address attri, Condition desire) {
-
         return null;
     }
 
@@ -68,49 +69,49 @@ public class Thinker {
      * @param desire  自己想要的目标终点状态
      * @return 返回构建的路径
      */
-    public Way fightOutWay(String startId, String endId, Address attri, Condition desire) {
+    public Way fightOutWay(String startId, String endId, Address attri, Condition desire) throws NoWay {
         Way result=new Way();
         Thing thing=belonged.findIntacneThingById(endId);
         Condition current=thing.getCondition();
         PositiveFun temp=null;
-
-        while (temp == null)
-        {
+        while (temp == null) {
             temp=getPFunToAttri(current,desire,attri);
-            if(temp!=null)
-            {
+            if(temp!=null) {
                 result.putAction(current,temp,desire);
                 return result;
             }
-            else
-            {
+            else {
                 Negetivefun s=getNFunToAttri(current,desire,attri);
-                result.putAction(current,s,desire);
-                Tentacle tentacle= s.getTentacle();
-                ArrayList<Condition> cons=  tentacle.reach(desire);
-
-                if(cons!=null && cons.size()!=0)
-                {
-                    current=cons.get(0).thing.getCondition();
-                    desire=cons.get(0);
+                if(s!=null) {
+                    result.putAction(current, s, desire);
+                    Tentacle tentacle = s.getTentacle();
+                    if (tentacle != null) {
+                        ArrayList<Condition> cons = tentacle.reach(desire);
+                        if (cons != null && cons.size() != 0) {
+                            current = cons.get(0).thing.getCondition();
+                            desire = cons.get(0);
+                        }
+                    }
                 }
+                else
+                    break;
             }
         }
-        return result;
+        throw  new NoWay("无法构建路径");
     }
 
     /**
-     *
+     * 找到一个合适的主动函数
      * @param currnt
      * @param desire
-     * @param attri
+     * @param keyAttri
      * @return
      */
-    private PositiveFun getPFunToAttri(Condition currnt,Condition desire,Address attri) {
+    private PositiveFun getPFunToAttri(Condition currnt,Condition desire,Address keyAttri) {
         for (PositiveFun fun:positiveFuns) {
-            if(fun.desti.contains(attri)) {
+            if(fun.desti.contains(keyAttri)) {
                 Tentacle tentacle =fun.getTentacle();
-                if (tentacle.check(currnt,desire))
+                if (tentacle.check(currnt,desire,keyAttri))
                     return fun;
             }
         }
@@ -128,7 +129,7 @@ public class Thinker {
         for (Negetivefun fun:negetivefuns) {
             if(fun.desti.contains(attri)) {
                 Tentacle tentacle =fun.getTentacle();
-                if (tentacle.check(currnt,desire))
+                if (tentacle.check(currnt,desire,attri))
                     return fun;
             }
         }
@@ -144,17 +145,11 @@ public class Thinker {
     }
 
     private void readyBaseParamters() {
-        Iterator<Map.Entry<String, Thing>> search= belonged.intanceThings.entrySet().iterator();
-
-        while (search.hasNext())
-        {
-            Thing thing= search.next().getValue();
-            String key=thing.getName();
-            if(!counter.containsKey(key))
-            {
-                counter.put(key,thing);
-            }
-        }
+        belonged.intanceThings.forEach((x,y)->{
+            String name=y.getName();
+            if(!counter.containsKey(name))
+                counter.put(name,y);
+        });
     }
 
     /**

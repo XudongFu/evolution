@@ -57,9 +57,7 @@ public  class Attri implements IAddressable
    }
    
    public void setValue(Object change) {
-	   if(shuxing!=null)
 		   shuxing.setValue(this,change);
-		   throw new RuntimeException("属性的设置值函数没有被设定");
    }
 
    /**
@@ -101,5 +99,15 @@ public  class Attri implements IAddressable
             return  dizhi;
         }
 	}
+
+	@Override
+	public boolean equals(Object obj )
+    {
+        Attri attri=(Attri) obj;
+        return  this.getValue().equals(attri.getValue());
+    }
+
+
+
 
 }

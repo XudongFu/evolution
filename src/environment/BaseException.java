@@ -4,7 +4,7 @@ package environment;
  * Created by 付旭东 on 2017/4/13.
  * 还需要描述很多东西，暂时想不到，错误发生之后有很多需要处理的，不一定就这一种情况。
  * */
-public class BaseExcepton extends  RuntimeException
+public class BaseException extends  RuntimeException
 {
         /**
          * 想要达到的状态
@@ -28,13 +28,11 @@ public class BaseExcepton extends  RuntimeException
         Address from;
 
 
-        public  BaseExcepton(Condition desire,Condition current,Address cause)
-        {
-                this.desire=desire;
+        public BaseException(Condition current, Condition desire, Address cause) {
                 this.current=current;
+                this.desire=desire;
                 this.cause=cause;
         }
-
 
 
 }

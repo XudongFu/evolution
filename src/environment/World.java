@@ -1,5 +1,4 @@
 package environment;
-import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -75,20 +74,25 @@ public final class World {
     }
 
     /**
-     *  使用模型事物生成实例事物
-     * @param name
-     * @param id
+     * 使用模型事物生成实例事物
+     * @param name 事物的名称
+     * @param id 生成的事物的id
+     * @return 返回一个实例事物
      */
     //这里应该建立一个字典才对的。
-	public void addIntanceThingFromModel(String name,String id) {
+	public Thing addIntanceThingFromModel(String name,String id) {
 	    Thing temp= modleThings.get(name).clone(id);
         temp.isIntance=true;
         intanceThings.put(id,temp);
+        return temp;
 	}
 	/**
 	 * 启动世界的运行
 	 */
 	public void start() {
+        System.out.println("名为"+name+"的世界开始运行");
+        thinker=new Thinker(this);
+
 		boolean happen = false;
 		do {
 		    happen=false;
@@ -177,8 +181,7 @@ public final class World {
 	 */
 	public Thing findIntacneThingById(String id)
     {
-        if(intanceThings.containsKey(id))
-        {
+        if(intanceThings.containsKey(id)) {
             return  intanceThings.get(id);
         }
         else
@@ -238,18 +241,54 @@ public final class World {
 	private void execWay(Way way) {
 		try{
 			PositiveFun fun;
-			while ((fun= way.getNextPosiFun())!=null)
-			{
+			while ((fun= way.getNextPosiFun())!=null) {
 				//需要进行状态验证，暂时还没有
 
 				//执行状态函数
 				fun.doIt();
 			}
 		}
-		catch (BaseExcepton excepton)
-		{
-
+		catch (BaseException exception) {
+            solveBaseException(exception);
 		}
+    }
+
+    /**
+     * 一种变通方法，使得错误处理变得容易。
+     * @param id  事物的id
+     * @param funtionName 要启动的事物的函数的名称
+     */
+     void invokeThingFunction(String id,String funtionName) {
+        try{
+            Thing thing=intanceThings.get(id);
+            PositiveFun fun= thing.positiveFunMap.get(funtionName);
+            if(fun!=null) {
+                fun.doIt();
+            }
+            else {
+                throw  new RuntimeException("参数错误，事物"+ thing.getName()+ "不包含名为'"+funtionName+"'的主动函数");
+            }
+        }
+        catch (BaseException exception) {
+            solveBaseException(exception);
+        }
+    }
+
+    private  void solveBaseException(BaseException exception) {
+        try {
+            String startId=exception.current.getBelongedId();
+            String endId=exception.desire.getBelongedId();
+           Way path= thinker.fightOutWay(startId,endId,exception.desire.KeyAttri,exception.desire);
+           execWay(path);
+        }
+        catch (BaseException e) {
+            solveBaseException(e);
+        }
+        catch (NoWay noWay)
+        {
+            System.out.println("无法构建构建路径");
+        }
+
     }
 
 

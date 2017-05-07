@@ -74,7 +74,8 @@ public class Thing implements Cloneable {
 	 * 
 	 * @param isIntance
 	 */
-	void setIntance(boolean isIntance) {
+	//这个函数在包外应该被限制使用，特此加上private
+	private void setIntance(boolean isIntance) {
 		this.isIntance = isIntance;
 	}
 
@@ -84,19 +85,45 @@ public class Thing implements Cloneable {
 	 * @param value
 	 */
 	public void setTypeValue(String type, Object value) {
+	    for(Attri attri :attris) {
+            if(attri.getName().equals(type)) {
+                attri.setValue(value);
+            }}
 	}
+
+
+    /**
+     * 获取事物本身某个属性的值
+     * @param AttriName 属性的名称
+     * @return 属性的值
+     */
+	public Object getAttriValue(String AttriName)
+    {
+        for(Attri attri:attris) {
+            if(attri.getName().equals(AttriName)) {
+                return attri.getValue();
+            }
+        }
+        return null;
+    }
+
+
+
+    //这个函数写的存在问题，没有捕捉BaseException，
+    //主动函数的启动应该放在世界中才行，对于异常的处理同意放在一个地方，
+    //整个架构还存在的一个问题是，架构的事物现在都是死的，没有获得动力，
+    //表面执行好像就会存在问题。
 
     /**
      * 激活事物包含的某个主动函数
      * @param positiveFunName 要启动的主动函数的名称
      */
 	public void invokePositiveFun(String positiveFunName) {
-		PositiveFun fun=positiveFunMap.get(positiveFunName);
-		if(fun!=null) {
-            fun.doIt();
+	    if(this.isIntance) {
+            world.invokeThingFunction(this.getId(),positiveFunName);
         }
         else {
-            throw  new RuntimeException("参数错误，不包含名为'"+positiveFunName+"'的主动函数");
+            throw  new RuntimeException("事物本身为非实例事物，不能启动主动函数");
         }
     }
 
@@ -113,6 +140,7 @@ public class Thing implements Cloneable {
      * 附加主动函数
      * @param fun
      */
+    //是否需要设定事物此时必须处于非实例状态呢，应该需要
 	public void attachPositiveFun(PositiveFun fun) {
         positiveFunMap.put(fun.functionName,fun);
         fun.belonged=this;
@@ -138,7 +166,7 @@ public class Thing implements Cloneable {
 	 * 
 	 * @return 该事物此时刻的状态
 	 */
-	Condition getCondition() {
+	public Condition getCondition() {
 		return new Condition(this);
 	}
 
@@ -164,11 +192,21 @@ public class Thing implements Cloneable {
 	/**
 	 * 将事物的所有的函数进行注册
 	 */
-	void registerFunToAttri() {
+       void registerFunToAttri() {
 		for(Negetivefun fun: negetiveFunMap) {
 			fun.registerSelf();
 		}
 	}
+
+
+	public  Address getAttriAddress(String AttriName) {
+
+        for (Attri x : attris) {
+            if (x.getName().equals(AttriName))
+                return new Address(Thing.this.getName(), AttriName, Thing.this.getId(), Type.ATTRIBLE);
+        }
+        throw  new RuntimeException("事物不包含名为"+AttriName+"的属性");
+    }
 
 
 

@@ -1,6 +1,5 @@
 package environment;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -90,7 +89,7 @@ public  class Negetivefun  extends BaseFunction
                     }
                     reallyChange(t);
                 }
-				catch (BaseExcepton e)
+				catch (BaseException e)
                 {
                     //Way path= belonged.thinker.fightOutWay(e);
                     //belonged.executeWay(path);

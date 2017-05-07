@@ -1,6 +1,5 @@
 package environment;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -22,24 +21,16 @@ public  class PositiveFun extends BaseFunction
         for(Address dest:desti) {
             //目的属性集合，如果是属性，计算出对属性应该应该做出的改变。
             if(dest.type==Type.ATTRIBLE) {
-                try {
-                    Map<Attri, Object> t = functionBody.function(this, getAttris(dest));
+                    Map<Attri, Object> t = functionBody.function(this,belonged.world.getAttris(dest));
                     if (world.isRecord) {
                         /**
                          * 计划记录下所执行的变化，
                          */
                     }
                     reallyChange(t);
-                }
-                catch (BaseExcepton e)
-                {
-                    //Way path= belonged.thinker.fightOutWay(e);
-                    //belonged.executeWay(path);
-                }
             }
             //如果是函数的话就直接调用函数，这里有问题，需要再次考虑
             else {
-
 
             }}
     }
@@ -56,9 +47,16 @@ public  class PositiveFun extends BaseFunction
 
 
     public PositiveFun clone(Thing thing) {
-       PositiveFun positiveFun=new PositiveFun(functionName);
-       positiveFun.functionBody=this.functionBody;
+        PositiveFun positiveFun=new PositiveFun(functionName);
+        positiveFun.functionBody=this.functionBody;
         thing.attachPositiveFun(positiveFun);
+        this.desti.forEach(x->{
+            positiveFun.desti.add(x.clone());
+        });
+        this.src.forEach(x->{
+            positiveFun.src.add(x.clone());
+        });
+
         return  positiveFun;
     }
 

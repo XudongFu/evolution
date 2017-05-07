@@ -1,6 +1,8 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -20,7 +22,7 @@ public class Tentacle {
     /**
      * 目的属性和源状态的集合
      */
-    TreeMap<Condition,ArrayList<Condition>> rows=new TreeMap<>();
+    Map<Condition,ArrayList<Condition>> rows=new HashMap<>();
 
     /**
      * @param fun 建立该被动函数的触须
@@ -49,14 +51,25 @@ public class Tentacle {
 
     /**
      * 为了得到目的状态，对应的源状态的集合。
+     * 严格型的状态对应
      * @param desit
      * @return
      */
-    public ArrayList<Condition> reach(Condition desit)
-    {
+    public ArrayList<Condition> reach(Condition desit) {
+        if(desit.AllFit)
         return rows.get(desit);
-    }
+        else {
+            ArrayList<Condition> result=new ArrayList<>();
+            if(desit.IgnoreOtherAttri) {
+                rows.forEach((x,y)->{
+                    if(x.equals(desit))
+                    result.addAll(y);});
 
+                return result;
+            }
+        }
+        return null;
+    }
 
     /**
      * 检验某种状态状态转换的可行性，如果可行返回true，否则返回false。
@@ -64,11 +77,9 @@ public class Tentacle {
      * @param desite
      * @return
      */
-    public boolean check(Condition src,Condition desite)
-    {
+    public boolean check(Condition src,Condition desite,Address keyAttri) {
         ArrayList<Condition> srcs=reach(desite);
-        if(srcs!=null && srcs.contains(src))
-        {
+        if(srcs!=null && srcs.contains(src)) {
             return true;
         }
         else

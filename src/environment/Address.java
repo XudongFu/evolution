@@ -23,7 +23,7 @@ public class Address {
 	/**
 	 * 标识元素的类型
 	 */
-	public  Type type;
+	public final Type type;
 
 	/**
 	 * 如果 type 为FUNCTION,则此属性为函数的名称
@@ -57,28 +57,31 @@ public class Address {
         }
 	}
 
-
 	/**
-	 *
 	 * @param obj
 	 * @return
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		Address temp = (Address) obj;
-		if (id.equals("")) {
-			if (thingName.equals(temp.thingName) && attriName.equals(temp.attriName)) {
-				return true;
-			}
-			return false;
-		} else {
-			if (thingName.equals(temp.thingName) && attriName.equals(temp.attriName)
-					&& id.equals(temp.id) && type==temp.type) {
-				return true;
-			}
-			return false;
-		}
+        Address address = (Address) obj;
+		if(this.id==null || address.id==null || this.id.equals("")|| address.id.equals("")) {
+            return this.thingName.equals(address.thingName) && this.attriName.equals(address.attriName);
+        }
+        else {
+            return this.thingName.equals(address.thingName) && this.attriName.equals(address.attriName) && this.id.equals(address.id);
+        }
 	}
+
+    /**
+     *
+     * @return 我自己设定address是不可更改的，是固定的，
+     */
+	@Override
+	public Address clone()
+    {
+        return this;
+    }
+
 
 }
 
