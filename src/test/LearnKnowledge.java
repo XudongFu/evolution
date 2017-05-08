@@ -160,8 +160,8 @@ public class LearnKnowledge
         home.attachModleThing(book);
         Thing deng=  home.addIntanceThingFromModel("lamp","lamp");
         Thing shu= home.addIntanceThingFromModel("book","book");
-
         home.start();
+
         xiaoming.invokePositiveFun("learn");
         xiaoming.setTypeValue("bright",true);
         xiaoming.invokePositiveFun("learn");

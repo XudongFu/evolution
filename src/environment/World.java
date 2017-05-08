@@ -196,7 +196,7 @@ public final class World {
 	 */
 	public ArrayList<Attri> getAttris(Address dizhi) {
         ArrayList<Attri> res=new ArrayList<>();
-	    if(dizhi.id.equals("")==false) {
+	    if(dizhi.id!=null && !dizhi.id.equals("")) {
             Thing thing= intanceThings.get(dizhi.id);
             for (Attri s:thing.attris) {
                 if(s.getName().equals(dizhi.attriName))
@@ -259,9 +259,10 @@ public final class World {
      * @param funtionName 要启动的事物的函数的名称
      */
      void invokeThingFunction(String id,String funtionName) {
+
+         Thing thing=intanceThings.get(id);
+         PositiveFun fun= thing.positiveFunMap.get(funtionName);
         try{
-            Thing thing=intanceThings.get(id);
-            PositiveFun fun= thing.positiveFunMap.get(funtionName);
             if(fun!=null) {
                 fun.doIt();
             }
@@ -271,6 +272,12 @@ public final class World {
         }
         catch (BaseException exception) {
             solveBaseException(exception);
+            if(fun!=null) {
+                fun.doIt();
+            }
+            else {
+                throw  new RuntimeException("参数错误，事物"+ thing.getName()+ "不包含名为'"+funtionName+"'的主动函数");
+            }
         }
     }
 
@@ -288,7 +295,6 @@ public final class World {
         {
             System.out.println("无法构建构建路径");
         }
-
     }
 
 

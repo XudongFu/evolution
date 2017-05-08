@@ -1,15 +1,15 @@
 package environment;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 /***
  * 对于单个事物属性状态的描述，
  */
-public class Condition 
+public class Condition
 {
 	Thing thing;
 	//保存状态的一个副本
-	Map<String, Object> attri=new TreeMap<String, Object>();
+	Map<String, Object> attri=new HashMap<String, Object>();
 
 	private  Condition() {
     }
@@ -70,7 +70,7 @@ public class Condition
     {
         Condition condition=new Condition();
         condition.thing=this.thing;
-        condition.attri=new TreeMap<>();
+        condition.attri=new HashMap<>();
         this.attri.forEach((x,y)-> {
             if(!x.equals(keyAttri))
             condition.attri.put(x,y);
@@ -86,13 +86,11 @@ public class Condition
 
     private  int i=0;
 
-
-
-
     @Override
     public boolean equals(Object obj) {
-       Condition condition=(Condition) obj;
-	    if(condition.AllFit) {
+        Condition condition=(Condition) obj;
+	    if(condition.AllFit && this.AllFit )
+        {
             if(condition.attri.size()==this.attri.size()) {
                 this.attri.forEach((x,y)->{
                     if(!y.equals(condition.attri.get(x)));
@@ -105,22 +103,25 @@ public class Condition
             else
                 return  false;
         }
-        else {
-            if(condition.IgnoreOtherAttri) {
-                return this.attri.get(condition.KeyAttri.attriName)==condition.attri.get(condition.KeyAttri.attriName);
-            }
+	    else
+        {
+            //两个关键属性还可能存在不相同的情况
+            Address keySelf= this.KeyAttri;
+            Address other=condition.KeyAttri;
+
+            Boolean keyselfTrue=true;
+            Boolean otherTrue=true;
+
+            if(keySelf!=null)
+            keyselfTrue=this.attri.get(keySelf.attriName).equals(condition.attri.get(keySelf.attriName));
+
+            if(other!=null)
+            otherTrue=this.attri.get(other.attriName).equals(condition.attri.get(other.attriName));
+
+            return keyselfTrue && otherTrue;
+
         }
         throw  new RuntimeException("状态比较发生未知错误");
-
-
-
-
-
-
-
-
-
-
 
     }
 

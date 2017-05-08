@@ -52,9 +52,10 @@ public class Way {
      * @return
      */
     public  PositiveFun getNextPosiFun() {
-        Action action;
-        while (!(action= _prediction.pop()).isPositive);
-        return  action.pfun;
+        Action action=new Action();
+        while (_prediction.size()!= 0 &&!(action= _prediction.pop()).isPositive);
+        return action.pfun;
+
     }
 
 	 static  class  Action{
@@ -63,6 +64,12 @@ public class Way {
 	    Condition predition;
 	    PositiveFun pfun;
 	    Negetivefun nfun;
+
+	    Action()
+        {
+            pfun=null;
+            nfun=null;
+        }
 
 	    Action(Condition current, PositiveFun fun,Condition predition) {
             this.cunrent=current;
