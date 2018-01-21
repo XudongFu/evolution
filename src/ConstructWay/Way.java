@@ -6,13 +6,32 @@ public class Way {
 
     int Distance=0;
 
+    public void setNodeSequence(ArrayList<WayNode> nodeSequence) {
+        NodeSequence = nodeSequence;
+    }
+
     ArrayList<WayNode> NodeSequence=new ArrayList<WayNode>();
 
-    public Way() {
+    IDistance StartPoint;
+
+    /**
+     * 第一个节点是起点
+     * @param startPoint
+     */
+    public Way(IDistance startPoint) {
+        this.StartPoint=startPoint;
     }
 
     public ArrayList<WayNode> GetWayNodeSqquence() {
         return NodeSequence;
+    }
+
+    public Way Clone() {
+        Way way=new Way(StartPoint );
+       for(WayNode node :NodeSequence ) {
+           way.AppendNode(node);
+       }
+       return way;
     }
 
     /**
@@ -25,9 +44,7 @@ public class Way {
             throw  new RuntimeException("ArgueMentException");
         }
         if(Distance<Integer.MAX_VALUE - distance) {
-            WayNode tempNode =new WayNode();
-            tempNode.node=node;
-            tempNode.Distance=distance;
+            WayNode tempNode =new WayNode(node,distance);
             Distance += distance;
             NodeSequence.add(tempNode);
         }

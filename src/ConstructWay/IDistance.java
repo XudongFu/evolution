@@ -7,7 +7,7 @@ package ConstructWay;
 public interface IDistance<T> {
 
    default int GetDistanct(T node ) {
-        return  Integer.MAX_VALUE;
+        return  WayNode.infinityDistance;
    }
 
 }

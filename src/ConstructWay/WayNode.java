@@ -7,6 +7,12 @@ public class WayNode {
     public IDistance node;
     public int Distance;
 
+    public WayNode(IDistance node , int distance)
+    {
+        this.node=node;
+        this.Distance=distance;
+    }
+
     /**
      * 代表两个节点的距离是无限距离
      */
