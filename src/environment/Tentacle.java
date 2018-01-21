@@ -63,7 +63,6 @@ public class Tentacle {
                 rows.forEach((x,y)->{
                     if(x.equals(desit))
                     result.addAll(y);});
-
                 return result;
             }
         }

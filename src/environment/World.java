@@ -297,7 +297,6 @@ public final class World {
         }
     }
 
-
 	/**
 	 * 连接属性指向函数的连线
 	 */
@@ -307,4 +306,37 @@ public final class World {
             intanceThings.get(s).registerFunToAttri();
         }
     }
+
+
+    /**
+     * 将一个包中的某个模型事物添加到世界中
+     * @param modelThing 模型事物的类
+     * @param pack 模型事物可能需要其他包含在其中的元素
+     */
+    public void paraseClass(Class<? extends ModelThing> modelThing,Package pack)
+    {
+
+    }
+
+    /**
+     * 将一个包中的所有的模型事物添加到世界中
+     * @param pack 包
+     */
+    public void paraseClass(Package pack)
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

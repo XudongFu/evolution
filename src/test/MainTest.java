@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import environment.*;
 
+
+
 public class MainTest {
 	public static void main(String[] args) {
 			World world=new World("first");

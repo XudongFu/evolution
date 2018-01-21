@@ -33,21 +33,21 @@ public class Address {
     /**
      *
      * @param thingName 事物的名称
-     * @param Name 函数或者属性的名称
+     * @param attriName 函数或者属性的名称
      * @param id 事物的id
      * @param type 指明该地址指向属性还是函数
      */
-	public Address(String thingName, String Name, String id, Type type) {
+	public Address(String thingName, String attriName, String id, Type type) {
 		this.thingName = thingName;
 		this.id=id;
 		this.type=type;
 		switch (type) {
             case ATTRIBLE:
-                this.attriName = Name;
+                this.attriName = attriName;
                 this.functionName="";
                 break;
             case FUNCTION:
-                this.functionName=Name;
+                this.functionName=attriName;
                 this.attriName = "";
                 break;
             default:

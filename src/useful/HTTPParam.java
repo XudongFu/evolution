@@ -1,7 +1,7 @@
 package useful;
 
 public class HTTPParam {
-    //请求参数
+    //请求参数。
     private String key;
     //参数值
     private String value;

@@ -91,7 +91,7 @@ public  class Negetivefun  extends BaseFunction
                 }
 				catch (BaseException e)
                 {
-                    //Way path= belonged.thinker.fightOutWay(e);
+                    //WayNode path= belonged.thinker.fightOutWay(e);
                     //belonged.executeWay(path);
                 }
 			}
