@@ -7,10 +7,10 @@
 ## 2.2现在编程方式以及个人思考：
 首先举一个简单的例子：数据库里面存储着一个人的成绩，网页上有一个文本框，目标是让文本框显示那个人的成绩。
 编写程序的话，大致是这个样子(不要过分强调细节，相当于伪代码)：
-*第一步，服务器端定义变量 int grade; grade =  exec( "select grade from t_student_grade")
-*第二步，服务器端socket.send(grade)
-*第三步，网页端接收到变量，int grade= socket.receive();
-*第四步，网页端设定文本框的值，setGradeTextValue(grade);
+* 第一步，服务器端定义变量 int grade; grade =  exec( "select grade from t_student_grade")
+* 第二步，服务器端socket.send(grade)
+* 第三步，网页端接收到变量，int grade= socket.receive();
+* 第四步，网页端设定文本框的值，setGradeTextValue(grade);
 
 在整个过程中，涉及到了四个事物，数据库中的成绩，服务端变量grade,网页端变量grade,网页端成绩文本框grade,数据流动为：
 
